@@ -13,6 +13,8 @@ gemspec
 # To use debugger
 gem 'debugger'
 
+gem 'coveralls', require: false
+
 group :development, :test do
   gem "rspec-rails"
   gem 'shoulda-matchers'
