@@ -1,14 +1,14 @@
 require 'rubygems'
 
+require 'coveralls'
+Coveralls.wear!
+
 ENV["RAILS_ENV"] ||= "test"
 ENV["RAILS_ROOT"] = File.expand_path("../dummy", __FILE__)
 require File.expand_path("../dummy/config/environment", __FILE__)
 
 require "rspec/rails"
 require "rspec/autorun"
-
-require 'coveralls'
-Coveralls.wear!
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].each { |f| require f }
 
