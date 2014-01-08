@@ -11,7 +11,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140108211716) do
 ActiveRecord::Schema.define(version: 20140108214030) do
 
   create_table "sessions", force: true do |t|
@@ -22,6 +21,14 @@ ActiveRecord::Schema.define(version: 20140108214030) do
   end
 
   add_index "sessions", ["user_id"], name: "index_sessions_on_user_id"
+
+  create_table "universes", force: true do |t|
+    t.string   "name"
+    t.float    "entropy"
+    t.integer  "light_years"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"

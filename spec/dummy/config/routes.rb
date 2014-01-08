@@ -1,6 +1,8 @@
 Dummy::Application.routes.draw do
   resources :sessions
 
+  resources :universes
+
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
