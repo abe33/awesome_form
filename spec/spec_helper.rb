@@ -1,5 +1,6 @@
 require 'rubygems'
 
+# Coveralls must be required first
 require 'coveralls'
 Coveralls.wear!
 
@@ -9,6 +10,12 @@ require File.expand_path("../dummy/config/environment", __FILE__)
 
 require "rspec/rails"
 require "rspec/autorun"
+
+require "aruba/api"
+
+require "capybara/rails"
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 Dir[File.expand_path("../support/**/*.rb", __FILE__)].each { |f| require f }
 
