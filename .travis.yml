@@ -1,6 +1,10 @@
 language: ruby
 before_install:
   - gem install bundler -v '>= 1.5.1'
+before_script:
+  - cd spec/dummy
+  - bundle exec rake db:test:prepare
+  - cd ..
 rvm:
   - 2.0.0
   - 2.1.0
