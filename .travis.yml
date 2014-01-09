@@ -6,7 +6,7 @@ before_script:
   - cd spec/dummy
   - ls
   - bundle exec rake db:test:prepare
-  - cd ..
+  - cd ../..
   - ls
 rvm:
   - 2.0.0
