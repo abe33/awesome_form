@@ -1,28 +1,25 @@
-Dir[File.expand_path("../*.rb", __FILE__)].each { |f| require f }
-
 module AwesomeForm
   module DOM
     class DomExpression
-      include AwesomeForm::DOM::HasExpressions
-
-      attr_accessor :parent
-
-      def initialize(source)
+      def initialize(source, test)
         @source = source
+        @test = test
         @expressions = []
 
         parse
       end
 
       def match(elements)
-        @expressions.all? {|ex| ex.match elements }
+        @expressions.each do |exp|
+          elements.should @test.have_selector exp
+        end
       end
 
       def parse
-        starting_indent = 0
-        current_parent = self
         current_indent = nil
         current = nil
+
+        selector_stack = [nil]
 
         @source.split("\n").each_with_index do |line, i|
           expression = line.strip
@@ -31,30 +28,23 @@ module AwesomeForm
           indent = line_indent line
           current_indent ||= indent
 
-          node_expression = AwesomeForm::DOM::NodeExpression.new expression
-
           if indent == current_indent
-            current_parent << node_expression
-            current = node_expression
+            selector_stack[-1] = expression
 
           elsif indent == current_indent + 1
-            text_expression_has_no_child i if current.is_text_expression?
 
-            current << node_expression
+            selector_stack << expression
             current_indent = indent
-            current_parent = current
-            current = node_expression
 
           elsif indent < current_indent and indent.round == indent
             dif = current_indent - indent
-            current_parent = current.nth_ancestor dif.abs
-            current_parent << node_expression
+            selector_stack[(-1-dif.abs)..-1] = expression
             current_indent = indent
-            current = node_expression
           else
             invalid_indent i
           end
 
+          @expressions << selector_stack.join(' ')
         end
       end
 
