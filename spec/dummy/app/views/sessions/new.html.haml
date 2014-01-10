@@ -1,6 +1,6 @@
 - u = User.new
 
-= awesome_form_for u, url: [u] do |form|
+= awesome_form_for u, url: sessions_path do |form|
   form
   /= form.inputs :email, :password
   /= form.input :remember_me, as: :boolean
