@@ -11,9 +11,9 @@ feature 'awesome_form_for used in a view', js: true do
           div
             input[name="utf8"][type="hidden"]
 
-          input[name="email"][type="email"]
-          input[name="password"][type="password"]
-          input[name="remember_me"][type="checkbox"]
+          input[name="user[email]"][type="email"]
+          input[name="user[password]"][type="password"]
+          input[name="user[remember_me]"][type="checkbox"]
     ')
   end
 end
