@@ -48,14 +48,9 @@ module AwesomeForm
         end
       end
 
-      def text_expression_has_no_child(line)
-        raise "text expressions cannot have children on line #{ line + 1 }"
-      end
-
       def invalid_indent(line)
         raise "invalid indent on line #{ line + 1 } of '#{ @source }'"
       end
-
 
       def line_indent(line)
         res = line.split(/[^ ]/)[0]
