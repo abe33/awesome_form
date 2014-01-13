@@ -1,2 +1,8 @@
+:ruby
+  attrs = {
+    name: builder.input_name(attribute_name),
+    type: type,
+    value: object.try(attribute_name),
+  }
 
-%input{name: "#{object_name}[#{attribute_name}]", type: type, value: object.try(attribute_name)}
+%input{attrs}

@@ -1,2 +1,8 @@
-
-%input{name: "#{object_name}[#{attribute_name}]", type: :checkbox, value: '1', checked: object.try(attribute_name)}
+:ruby
+  attrs = {
+    name: builder.input_name(attribute_name),
+    type: :checkbox,
+    value: '1',
+    checked: object.try(attribute_name),
+  }
+%input{attrs}

@@ -24,6 +24,14 @@ module AwesomeForm
       @template.lookup_context.exists? view, [prefix]
     end
 
+    def input_name(attribute_name)
+      "#{object_name}[#{attribute_name}]"
+    end
+
+    def collection_name(attribute_name, index=nil)
+      "#{object_name}[#{attribute_name}][#{index}]"
+    end
+
   protected
 
     def model_name
