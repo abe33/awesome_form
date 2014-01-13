@@ -28,4 +28,9 @@ group :development, :test do
   # Controllers/Views Errors
   gem "better_errors"
   gem "binding_of_caller"
+
+  # Guard
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
 end
