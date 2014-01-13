@@ -66,16 +66,27 @@ module AwesomeForm
     end
 
     def partial_for_input(input_options)
-      for_type = "awesome_form/#{AwesomeForm.theme}/inputs/#{input_options[:type]}"
-      default_for_theme = "awesome_form/#{AwesomeForm.theme}/inputs/default"
+      paths = partial_paths_for_input(input_options)
 
-      if view_exists? for_type
-        for_type
-      elsif view_exists? default_for_theme
-        default_for_theme
-      else
+      paths.select { |p| view_exists? p }.first
+    end
+
+    def partial_paths_for_input(input_options)
+      theme = AwesomeForm.theme
+      model_name = object.class.name.underscore.pluralize
+
+      [
+        "awesome_form/inputs/#{model_name}/#{input_options[:attribute_name]}",
+        "awesome_form/#{theme}/inputs/#{model_name}/#{input_options[:attribute_name]}",
+
+        "awesome_form/inputs/#{input_options[:type]}",
+        "awesome_form/#{theme}/inputs/#{input_options[:type]}",
+        "awesome_form/default_theme/inputs/#{input_options[:type]}",
+
+        "awesome_form/inputs/default",
+        "awesome_form/#{theme}/inputs/default",
         "awesome_form/default_theme/inputs/default"
-      end
+      ].uniq
     end
 
     def wrapper_for_input(input_options)
