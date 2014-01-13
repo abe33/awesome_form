@@ -1,31 +1,15 @@
 require 'awesome_form/attributes_methods'
 require 'awesome_form/inputs_methods'
+require 'awesome_form/actions_methods'
+
 module AwesomeForm
   class FormBuilder < ActionView::Helpers::FormBuilder
     include AwesomeForm::AttributesMethods
     include AwesomeForm::InputsMethods
+    include AwesomeForm::ActionsMethods
 
     def initialize(*)
       super
-    end
-
-
-    def actions(*args, &block)
-      actions, options = filter_arguments(*args)
-
-      actions.map {|f| input f, options }.join("\n").html_safe
-    end
-
-    def action(action, options={}, &block)
-      render_options = {
-        partial: "awesome_form/inputs/default",
-        layout: nil,
-        locals: {
-          action: action,
-          options: options,
-        },
-      }
-      render render_options
     end
 
     def render(render_options)

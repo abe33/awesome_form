@@ -14,6 +14,8 @@ feature 'awesome_form_for used in a view', js: true do
           input[name="user[email]"][type="email"]
           input[name="user[password]"][type="password"]
           input[name="user[remember_me]"][type="checkbox"]
+
+          button[type="submit"][name="commit"]
     ')
   end
 end

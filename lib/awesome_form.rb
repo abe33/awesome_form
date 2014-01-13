@@ -13,6 +13,9 @@ module AwesomeForm
   mattr_accessor :theme
   @@theme = :default_theme
 
+  mattr_accessor :default_actions
+  @@default_actions = [:submit]
+
   def self.setup
     yield self
   end
