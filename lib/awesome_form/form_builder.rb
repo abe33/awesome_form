@@ -6,11 +6,7 @@ module AwesomeForm
     end
 
     def inputs(*args, &block)
-      options = {}
-
-      attributes = args.select {|a| a.is_a? Symbol }
-      options_args = args.select {|a| a.is_a? Hash }
-      options_args.each {|h| options.merge! h }
+      attributes, options = filter_arguments(*args)
 
       attributes.map {|f| input f, options }.join("\n").html_safe
     end
@@ -28,13 +24,9 @@ module AwesomeForm
     end
 
     def actions(*args, &block)
-      options = {}
+      actions, options = filter_arguments(*args)
 
-      attributes = args.select {|a| a.is_a? Symbol }
-      options_args = args.select {|a| a.is_a? Hash }
-      options_args.each {|h| options.merge! h }
-
-      attributes.map {|f| input f, options }.join("\n").html_safe
+      actions.map {|f| input f, options }.join("\n").html_safe
     end
 
     def action(action, options={}, &block)
@@ -62,6 +54,16 @@ module AwesomeForm
     end
 
   protected
+
+    def filter_arguments(*args)
+      options = {}
+
+      symbols = args.select {|a| a.is_a? Symbol }
+      options_args = args.select {|a| a.is_a? Hash }
+      options_args.each {|h| options.merge! h }
+
+      [symbols, options]
+    end
 
     def partial_for_input(input_options)
       for_type = "awesome_form/#{AwesomeForm.theme}/inputs/#{input_options[:type]}"
