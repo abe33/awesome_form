@@ -60,7 +60,6 @@ module AwesomeForm
       end
 
       def wrapper_for_action(action_options)
-        "awesome_form/default_theme/wrappers/default"
       end
     end
   end

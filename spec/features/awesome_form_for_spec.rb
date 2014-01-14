@@ -19,7 +19,6 @@ feature 'awesome_form_for used in a view', js: true do
     ')
 
     match_content_of(page, '.field > input[name="user[email]"][type="email"]')
-    match_content_of(page, '.field > button[type="submit"]')
   end
 end
 
