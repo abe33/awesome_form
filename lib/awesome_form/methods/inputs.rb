@@ -57,6 +57,7 @@ module AwesomeForm
       end
 
       def wrapper_for_input(input_options)
+        "awesome_form/default_theme/wrappers/default"
       end
     end
   end

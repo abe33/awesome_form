@@ -11,11 +11,15 @@ feature 'awesome_form_for used in a view', js: true do
           div
             input[name="utf8"][type="hidden"]
 
-          input[name="user[email]"][type="email"]
-          input[name="user[password]"][type="password"]
-          input[name="user[remember_me]"][type="checkbox"]
+          .field
+            input[name="user[email]"][type="email"]
+          .field
+            input[name="user[password]"][type="password"]
+          .field
+            input[name="user[remember_me]"][type="checkbox"]
 
-          button[type="submit"][name="commit"]
+          .field
+            button[type="submit"][name="commit"]
     ')
   end
 end
