@@ -37,7 +37,7 @@ module AwesomeForm
 
       case reflection.macro
       when :belongs_to then input_name "#{attribute_name}_id"
-      when :has_many then collection_name "#{attribute_name.singular}_ids"
+      when :has_many then collection_name "#{attribute_name.to_s.singularize}_ids"
       when :has_one
         raise "Can't create the association name for a :has_one association"
       else

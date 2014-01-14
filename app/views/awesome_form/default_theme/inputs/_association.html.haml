@@ -1,6 +1,7 @@
 :ruby
   attrs = {
-    name: builder.association_name(attribute_name)
+    name: builder.association_name(attribute_name),
+    multiple: association_type == :has_many
   }
 
 %select{attrs}
