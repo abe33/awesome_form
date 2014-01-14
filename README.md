@@ -5,10 +5,17 @@
 [![Code Climate](https://codeclimate.com/github/abe33/awesome_form.png)](https://codeclimate.com/github/abe33/awesome_form)
 [![Dependency Status](https://gemnasium.com/abe33/awesome_form.png)](https://gemnasium.com/abe33/awesome_form)
 
-`AwesomeForm` is yet another form helper for `Rails`, but, contrary to `Formtastic` and `SimpleForm` it rely on partial views and not on html helpers.
+`AwesomeForm` is yet another form helper for `Rails`, but, contrary to `Formtastic` and `SimpleForm` it rely on partial views instead of html helpers.
+
+Each input type is a partial in its theme directory, and wrappers are made using the `layout` option of the `render` method.
+
+For instance, a boolean field will be rendered using a partial named `_boolean` in the `app/views/awesome_form` (See below for further explanation on partials lookup).
+
+The same principles apply with form actions, each action is map to a partial file and eventually wrapped using a layout file.
 
 ### Usage
 
+Using `AwesomeForm` doesn't differ much of using `Formtastic` or `SimpleForm`:
 
 ```haml
 = awesome_form_for resource, url: resource_path(resource) do |form|
@@ -18,9 +25,7 @@
   = form.input :some_attribute, as: :boolean
 
   = form.actions :submit, :cancel
-
 ```
-
 
 ### Views Lookup
 
