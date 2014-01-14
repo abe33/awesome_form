@@ -2,6 +2,13 @@ module AwesomeForm
   module Methods
     module Attributes
 
+      def discover_attributes(model)
+        cols = association_columns(:belongs_to)
+        cols += content_columns
+        cols -= AwesomeForm.excluded_columns
+        cols.compact
+      end
+
     protected
 
       def type_options_for_attribute(attribute, options)
@@ -52,6 +59,28 @@ module AwesomeForm
       def association_for_attribute(attribute)
         if @object.class.respond_to?(:reflect_on_association)
           @object.class.reflect_on_association(attribute)
+        end
+      end
+
+      def content_columns()
+        klass = object.class
+        return [] unless klass.respond_to?(:content_columns)
+        klass.content_columns.collect { |c| c.name.to_sym }.compact
+      end
+
+      def association_columns(*by_associations)
+        if object.present? && object.class.respond_to?(:reflections)
+          object.class.reflections.collect do |name, association_reflection|
+            if by_associations.present?
+              if by_associations.include?(association_reflection.macro) && association_reflection.options[:polymorphic] != true
+                name
+              end
+            else
+              name
+            end
+          end.compact
+        else
+          []
         end
       end
     end

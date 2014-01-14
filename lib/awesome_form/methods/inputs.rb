@@ -5,6 +5,8 @@ module AwesomeForm
       def inputs(*args, &block)
         attributes, options = filter_arguments(*args)
 
+        attributes = discover_attributes(object) if attributes.empty?
+
         attributes.map {|f| input f, options }.join("\n").html_safe
       end
 

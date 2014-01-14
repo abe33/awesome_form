@@ -16,6 +16,9 @@ module AwesomeForm
   mattr_accessor :default_actions
   @@default_actions = [:submit]
 
+  mattr_accessor :excluded_columns
+  @@excluded_columns = [:created_at, :updated_at]
+
   def self.setup
     yield self
   end

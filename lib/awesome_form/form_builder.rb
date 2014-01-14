@@ -32,6 +32,19 @@ module AwesomeForm
       "#{object_name}[#{attribute_name}][#{index}]"
     end
 
+    def association_name(attribute_name)
+      reflection = association_for_attribute(attribute_name)
+
+      case reflection.macro
+      when :belongs_to then input_name "#{attribute_name}_id"
+      when :has_many then collection_name "#{attribute_name.singular}_ids"
+      when :has_one
+        raise "Can't create the association name for a :has_one association"
+      else
+        raise "Unknown association #{reflection.macro}"
+      end
+    end
+
   protected
 
     def model_name
