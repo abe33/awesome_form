@@ -1,12 +1,12 @@
-require 'awesome_form/attributes_methods'
-require 'awesome_form/inputs_methods'
-require 'awesome_form/actions_methods'
+require 'awesome_form/methods/attributes'
+require 'awesome_form/methods/inputs'
+require 'awesome_form/methods/actions'
 
 module AwesomeForm
   class FormBuilder < ActionView::Helpers::FormBuilder
-    include AwesomeForm::AttributesMethods
-    include AwesomeForm::InputsMethods
-    include AwesomeForm::ActionsMethods
+    include AwesomeForm::Methods::Attributes
+    include AwesomeForm::Methods::Inputs
+    include AwesomeForm::Methods::Actions
 
     def initialize(*)
       super
