@@ -19,6 +19,9 @@ module AwesomeForm
   mattr_accessor :excluded_columns
   @@excluded_columns = [:created_at, :updated_at]
 
+  mattr_accessor :default_associations
+  @@default_associations = [:belongs_to, :has_many]
+
   def self.setup
     yield self
   end

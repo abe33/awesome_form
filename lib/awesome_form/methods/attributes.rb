@@ -3,7 +3,7 @@ module AwesomeForm
     module Attributes
 
       def discover_attributes(model)
-        cols = association_columns(:belongs_to)
+        cols = association_columns(*AwesomeForm.default_associations)
         cols += content_columns
         cols -= AwesomeForm.excluded_columns
         cols.compact
