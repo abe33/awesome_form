@@ -23,7 +23,12 @@ feature 'awesome_form_for used in a view', js: true do
 end
 
 feature 'discovering models field', js: true do
+  let(:universe) { FactoryGirl.create :universe }
+
+  before { universe }
+
   scenario 'for a new user' do
+
     visit '/users/new'
 
     match_content_of(page, '
@@ -33,6 +38,7 @@ feature 'discovering models field', js: true do
         input[name="user[dead]"]
         input[name="user[born_at]"]
         select[name="user[universe_id]"]
+          option[value="1"]
     ')
   end
 
