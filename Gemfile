@@ -18,6 +18,7 @@ group :development, :test do
   # Rspec
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
 
   # Integration Tests
   gem 'capybara'
