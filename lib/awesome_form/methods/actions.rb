@@ -8,6 +8,7 @@ module AwesomeForm
       render_method :action
 
     protected
+
       def default_keys_for_actions
         AwesomeForm.default_actions
       end
