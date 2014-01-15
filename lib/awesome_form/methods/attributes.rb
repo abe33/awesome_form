@@ -29,9 +29,14 @@ module AwesomeForm
           type_options[:type] ||= :association
           type_options[:association_type] = association.macro
           type_options[:multiple] = association.instance_variable_get(:@collection)
-          type_options[:collection] = association.active_record.all.map do |rec|
+          type_options[:collection] = association.klass.all.map do |rec|
             [ rec.try(:id), rec.try(:name) || rec.try(:to_s) ]
-          type_options[:selected] = rec.send(attribute).map(&:id)
+          end
+
+          if type_options[:multiple]
+            type_options[:selected] = object.send(attribute).map(&:id)
+          else
+            type_options[:selected] = object.send(attribute) ? [object.send(attribute).try(:id)] : []
           end
 
         else
