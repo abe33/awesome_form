@@ -13,40 +13,23 @@ module AwesomeForm
 
       def type_options_for_attribute(attribute, options)
         type_options = {}
-        type_options[:type] = options[:as].to_sym if options[:as].present?
+        type_options[:type] = options.delete(:as).to_sym if options[:as].present?
 
         column = column_for_attribute attribute
         association = association_for_attribute attribute
 
         if column.present?
-          type = column.type
-          type_options[:column_type] = type
-
-          type = type_for_string(attribute, column) if type == :string
-          type_options[:type] ||= type
-
+          type_options.merge! column_options_for(column)
         elsif association.present?
-          type_options[:type] ||= :association
-          type_options[:association_type] = association.macro
-          type_options[:multiple] = association.instance_variable_get(:@collection)
-          type_options[:collection] = association.klass.all.map do |rec|
-            [ rec.try(:id), rec.try(:name) || rec.try(:to_s) ]
-          end
-
-          if type_options[:multiple]
-            type_options[:selected] = object.send(attribute).map(&:id)
-          else
-            type_options[:selected] = object.send(attribute) ? [object.send(attribute).try(:id)] : []
-          end
-
+          type_options.merge! association_options_for(association)
         else
-          type_options[:type] ||= type_for_string(attribute, options)
+          type_options[:type] ||= type_for_string(attribute)
         end
 
-        type_options
+        type_options.merge options
       end
 
-      def type_for_string(attribute, column)
+      def type_for_string(attribute)
         case attribute.to_s
         when /password/ then :password
         when /time_zone/ then :time_zone
@@ -70,6 +53,36 @@ module AwesomeForm
         if @object.class.respond_to?(:reflect_on_association)
           @object.class.reflect_on_association(attribute)
         end
+      end
+
+      def column_options_for(column)
+        type = column.type
+
+        column_options = {
+          column_type: type,
+          type: type == :string ? type_for_string(column.name) : type
+        }
+
+        column_options
+      end
+
+      def association_options_for(association)
+        association_options = {
+          type: :association,
+          association_type: association.macro,
+          multiple: association.instance_variable_get(:@collection),
+          collection: association.klass.all.map do |rec|
+            [ rec.try(:id), rec.try(:name) || rec.try(:to_s) ]
+          end
+        }
+
+        if association_options[:multiple]
+          association_options[:selected] = object.send(association.name).map(&:id)
+        else
+          association_options[:selected] = object.send(association.name) ? [object.send(association.name).try(:id)] : []
+        end
+
+        association_options
       end
 
       def content_columns()

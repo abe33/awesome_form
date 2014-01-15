@@ -15,7 +15,7 @@ module AwesomeForm
         render_options = {
           partial: partial_for_action(action_options),
           layout: wrapper_for_action(action_options),
-          locals: { options: options }.merge(action_options),
+          locals: action_options,
         }
         render render_options
       end
@@ -32,7 +32,7 @@ module AwesomeForm
         when :reset then options[:name] = :reset
         end
 
-        options
+        options.merge(options)
       end
 
       def partial_for_action(action_options)

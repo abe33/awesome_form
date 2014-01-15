@@ -5,7 +5,7 @@
   }
 
 %select{attrs}
-  - if options[:include_blank]
+  - if defined?(include_blank) && include_blank
     %option{value: ''}
 
   - collection.each do |value, label|

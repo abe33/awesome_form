@@ -16,7 +16,7 @@ module AwesomeForm
         render_options = {
           partial: partial_for_input(input_options),
           layout: wrapper_for_input(input_options),
-          locals: { options: options }.merge(input_options),
+          locals: input_options,
         }
 
         render render_options
@@ -32,7 +32,9 @@ module AwesomeForm
           object_name: object_name,
           object: object,
           builder: self,
-        }.merge(type_options)
+        }
+        .merge(type_options)
+        .merge(options)
       end
 
       def partial_for_input(input_options)
