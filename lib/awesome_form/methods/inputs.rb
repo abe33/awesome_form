@@ -1,28 +1,17 @@
+require 'awesome_form/methods/rendering'
+
 module AwesomeForm
   module Methods
     module Inputs
+      extend AwesomeForm::Methods::Rendering
 
-      def inputs(*args, &block)
-        attributes, options = filter_arguments(*args)
-
-        attributes = discover_attributes(object) if attributes.empty?
-
-        attributes.map {|f| input f, options }.join("\n").html_safe
-      end
-
-      def input(attribute, options={}, &block)
-        input_options = options_for_input(attribute, options)
-
-        render_options = {
-          partial: partial_for_input(input_options),
-          layout: wrapper_for_input(input_options),
-          locals: input_options,
-        }
-
-        render render_options
-      end
+      render_method :input
 
     protected
+
+      def default_keys_for_inputs
+        discover_attributes(object)
+      end
 
       def options_for_input(attribute, options)
         type_options = type_options_for_attribute attribute, options

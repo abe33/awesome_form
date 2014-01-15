@@ -1,26 +1,16 @@
+require 'awesome_form/methods/rendering'
+
 module AwesomeForm
   module Methods
     module Actions
+      extend AwesomeForm::Methods::Rendering
 
-      def actions(*args, &block)
-        actions, options = filter_arguments(*args)
-        actions = AwesomeForm.default_actions if actions.empty?
-
-        actions.map {|f| action f, options }.join("\n").html_safe
-      end
-
-      def action(action, options={}, &block)
-        action_options = options_for_action(action, options)
-
-        render_options = {
-          partial: partial_for_action(action_options),
-          layout: wrapper_for_action(action_options),
-          locals: action_options,
-        }
-        render render_options
-      end
+      render_method :action
 
     protected
+      def default_keys_for_actions
+        AwesomeForm.default_actions
+      end
 
       def options_for_action(action, options)
         options = {}
