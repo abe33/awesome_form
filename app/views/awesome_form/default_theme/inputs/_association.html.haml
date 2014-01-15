@@ -1,7 +1,12 @@
 :ruby
   attrs = {
     name: builder.association_name(attribute_name),
-    multiple: association_type == :has_many
+    multiple: multiple
   }
 
 %select{attrs}
+  - if options[:include_blank]
+    %option{value: ''}
+
+  - collection.each do |value, label|
+    %option{value: value, selected: selected.include?(value)}= label

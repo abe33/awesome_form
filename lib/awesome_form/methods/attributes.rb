@@ -28,6 +28,11 @@ module AwesomeForm
         elsif association.present?
           type_options[:type] ||= :association
           type_options[:association_type] = association.macro
+          type_options[:multiple] = association.instance_variable_get(:@collection)
+          type_options[:collection] = association.active_record.all.map do |rec|
+            [ rec.try(:id), rec.try(:name) || rec.try(:to_s) ]
+          type_options[:selected] = rec.send(attribute).map(&:id)
+          end
 
         else
           type_options[:type] ||= type_for_string(attribute, options)
