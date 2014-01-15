@@ -18,7 +18,6 @@ group :development, :test do
   # Rspec
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'nyan-cat-formatter'
 
   # Integration Tests
   gem 'capybara'
