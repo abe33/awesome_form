@@ -1,0 +1,9 @@
+:ruby
+  user = User.new name: 'irrelevant'
+  user.universe = Universe.new name: 'irrelevant'
+
+= awesome_form_for user, url: '' do |form|
+  = form.input :name
+
+  = form.fields_for :universe do |universe_form|
+    = universe_form.input :name

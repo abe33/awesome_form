@@ -53,5 +53,16 @@ feature 'discovering models field', js: true do
         select[name="universe[user_ids][]"][multiple]
     ')
   end
+end
 
+feature 'for more complex forms' do
+  scenario 'such with fields_for' do
+    visit '/fields_for'
+
+    match_content_of(page, '
+      form
+        input[name="user[name]"]
+        input[name="user[universe_attributes][name]"][type="string"]
+    ')
+  end
 end
