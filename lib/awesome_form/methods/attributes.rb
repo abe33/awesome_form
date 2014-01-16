@@ -5,7 +5,7 @@ module AwesomeForm
       def discover_attributes(model)
         cols = association_columns(*AwesomeForm.default_associations)
         cols += content_columns
-        cols -= AwesomeForm.excluded_columns
+        cols -= AwesomeForm.excluded_columns.flatten.map(&:to_sym)
         cols.compact
       end
 

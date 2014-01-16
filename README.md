@@ -9,7 +9,7 @@
 
 Each input type is a partial in its theme directory, and wrappers are made using the `layout` option of the `render` method.
 
-For instance, a boolean field will be rendered using a partial named `_boolean` in the `app/views/awesome_form` (See below for further explanation on partials lookup).
+For instance, a boolean field will be rendered using a partial named `_boolean` in the `app/views/awesome_form` directory (See below for further explanation on partials lookup).
 
 The same principles apply with form actions, each action is map to a partial file and eventually wrapped using a layout file.
 
@@ -25,6 +25,27 @@ Using `AwesomeForm` doesn't differ much of using `Formtastic` or `SimpleForm`:
   = form.input :some_attribute, as: :boolean
 
   = form.actions :submit, :cancel
+```
+
+### Model Attributes Discovery
+
+When using the `inputs` method without any arguments, the form builder will attempt to discover attributes of the model. By default it'll generates an input for every columns of the model as well as for each association (both `belongs_to` and `has_many` associations).
+
+Columns can be excluded by adding them to the `AwesomeForm.excluded_columns` array. By default, only timestamps columns are ignored.
+
+```ruby
+AwesomeForm.setup do |config|
+  config.excluded_columns << %w(column_to_ignore another_column_to_ignore)
+end
+```
+
+By default, both `belongs_to` and `has_many` associations appears in discovered model's attributes. The default association are editable using
+the `AwesomeForm.default_associations` config.
+
+```ruby
+AwesomeForm.setup do |config|
+  config.default_associations = [:belongs_to]
+end
 ```
 
 ### Views Lookup
