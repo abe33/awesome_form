@@ -47,7 +47,8 @@ module AwesomeForm
 
     def filter_attributes_for(html, options)
       options.select do |k|
-        AwesomeForm.legal_attributes[html].include?(k)
+        AwesomeForm.legal_attributes[html].include?(k) ||
+        k.to_s =~ /^data($|-)/
       end
     end
 

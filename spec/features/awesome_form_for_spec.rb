@@ -104,4 +104,13 @@ feature 'for more complex forms' do
 
     ')
   end
+
+  scenario 'with data attributes' do
+    visit '/data'
+
+    match_content_of(page, '
+      form
+        input[data-id][data-type]
+    ')
+  end
 end
