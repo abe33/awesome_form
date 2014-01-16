@@ -58,9 +58,15 @@ module AwesomeForm
       def column_options_for(column)
         type = column.type
 
+        type = case type
+        when :string then type_for_string(column.name)
+        when :float, :integer then :number
+        else type
+        end
+
         column_options = {
           column_type: type,
-          type: type == :string ? type_for_string(column.name) : type
+          type: type
         }
 
         column_options

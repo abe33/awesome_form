@@ -35,8 +35,7 @@ feature 'discovering models field', js: true do
       form#new_user
         input[name="user[name]"]
         input[name="user[email]"]
-        input[name="user[dead]"]
-        input[name="user[born_at]"]
+        input[name="user[dead]"][type="checkbox"]
         select[name="user[universe_id]"]
           option[value="1"]
     ')
@@ -48,8 +47,8 @@ feature 'discovering models field', js: true do
     match_content_of(page, '
       form#new_universe
         input[name="universe[name]"]
-        input[name="universe[entropy]"]
-        input[name="universe[light_years]"]
+        input[name="universe[entropy]"][type="number"]
+        input[name="universe[light_years]"][type="number"]
         select[name="universe[user_ids][]"][multiple]
     ')
   end
