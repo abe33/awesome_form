@@ -65,4 +65,18 @@ feature 'for more complex forms' do
         input[name="user[universe_attributes][name]"][type="string"]
     ')
   end
+
+  scenario 'with custom select collection' do
+    visit '/selects'
+
+    match_content_of(page, '
+      form
+        select[name="universe[light_years]"]
+          option[value=""]
+          option[value="1"]
+          option[value="10"]
+          option[value="100"]
+          option[value="1000"]
+    ')
+  end
 end

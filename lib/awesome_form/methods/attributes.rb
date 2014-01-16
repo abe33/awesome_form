@@ -19,9 +19,9 @@ module AwesomeForm
         association = association_for_attribute attribute
 
         if column.present?
-          type_options.merge! column_options_for(column)
+          type_options.reverse_merge! column_options_for(column)
         elsif association.present?
-          type_options.merge! association_options_for(association)
+          type_options.reverse_merge! association_options_for(association)
         else
           type_options[:type] ||= type_for_string(attribute)
         end

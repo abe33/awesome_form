@@ -1,0 +1,15 @@
+:ruby
+  multiple ||= false
+  selected ||= []
+
+  attrs = {
+    name: multiple ? builder.collection_name(attribute_name) : builder.input_name(attribute_name),
+    multiple: multiple
+  }
+
+%select{attrs}
+  - if defined?(include_blank) && include_blank
+    %option{value: ''}
+
+  - collection.each do |value, label|
+    %option{value: value, selected: selected.include?(value)}= label || value
