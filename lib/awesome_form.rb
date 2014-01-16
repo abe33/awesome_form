@@ -22,6 +22,13 @@ module AwesomeForm
   mattr_accessor :default_associations
   @@default_associations = [:belongs_to, :has_many]
 
+  mattr_accessor :legal_attributes
+  @@legal_attributes = {
+    input: %w(accept alt autocomplete autofocus checked dirname disabled form formaction formenctype formmethod formnovalidate formtarget height list max maxlength min multiple name pattern placeholder readonly required size src step type value width).map(&:to_sym),
+    textarea: %w(autocomplete autofocus cols dirname disabled form maxlength name placeholder readonly required rows wrap).map(&:to_sym),
+    select: %w(autofocus disabled form multiple name required size).map(&:to_sym)
+  }
+
   def self.setup
     yield self
   end

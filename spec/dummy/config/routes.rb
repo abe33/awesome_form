@@ -7,5 +7,6 @@ Dummy::Application.routes.draw do
 
   get '/fields_for', to: 'forms#fields_for'
   get '/selects', to: 'forms#selects'
+  get '/inputs', to: 'forms#inputs'
 
 end

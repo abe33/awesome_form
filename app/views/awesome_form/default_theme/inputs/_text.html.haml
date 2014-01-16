@@ -1,0 +1,9 @@
+:ruby
+  attrs = {
+    name: builder.input_name(attribute_name)
+  }
+  if defined? input_html
+    attrs.merge! builder.filter_attributes_for(:textarea, input_html)
+  end
+
+%textarea{attrs}= object.try(attribute_name)

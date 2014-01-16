@@ -36,6 +36,7 @@ feature 'discovering models field', js: true do
         input[name="user[name]"]
         input[name="user[email]"]
         input[name="user[dead]"][type="checkbox"]
+        input[name="user[born_at]"][type="datetime"]
         select[name="user[universe_id]"]
           option[value="1"]
     ')
@@ -85,6 +86,22 @@ feature 'for more complex forms' do
           option[value="d"]
           option[value="e"][selected]
           option[value="f"]
+    ')
+  end
+
+  scenario 'with all inputs type' do
+    visit '/all_inputs'
+
+    match_content_of(page, '
+      form
+        textarea[name="user[foo]"]
+        input[name="user[foo]"][type="string"][value="bar"]
+        input[name="user[foo]"][type="range"][value="5"][min][max][step]
+        input[name="user[foo]"][type="number"][value="5"][min][max][step]
+        input[name="user[foo]"][type="datetime"][value][min][max]
+        input[name="user[foo]"][type="checkbox"][value="1"][checked]
+        input[name="user[foo]"][type="file"]
+
     ')
   end
 end

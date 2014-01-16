@@ -6,6 +6,9 @@
     name: multiple ? builder.collection_name(attribute_name) : builder.input_name(attribute_name),
     multiple: multiple
   }
+  if defined? input_html
+    attrs.merge! builder.filter_attributes_for(:select, input_html)
+  end
 
 %select{attrs}
   - if defined?(include_blank) && include_blank

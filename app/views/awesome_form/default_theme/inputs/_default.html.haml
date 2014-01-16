@@ -4,5 +4,8 @@
     type: type,
     value: object.try(attribute_name),
   }
+  if defined? input_html
+    attrs.merge! builder.filter_attributes_for(:input, input_html)
+  end
 
 %input{attrs}

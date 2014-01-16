@@ -45,6 +45,12 @@ module AwesomeForm
       end
     end
 
+    def filter_attributes_for(html, options)
+      options.select do |k|
+        AwesomeForm.legal_attributes[html].include?(k)
+      end
+    end
+
   protected
 
     def model_name
