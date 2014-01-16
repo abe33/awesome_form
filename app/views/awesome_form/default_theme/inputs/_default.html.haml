@@ -1,7 +1,7 @@
 :ruby
   attrs = {
     name: builder.input_name(attribute_name),
-    type: type,
+    type: type == :string ? :text : type,
     value: object.try(attribute_name),
   }
   if defined? input_html

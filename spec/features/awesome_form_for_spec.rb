@@ -62,7 +62,7 @@ feature 'for more complex forms' do
     match_content_of(page, '
       form
         input[name="user[name]"]
-        input[name="user[universe_attributes][name]"][type="string"]
+        input[name="user[universe_attributes][name]"][type="text"]
     ')
   end
 
@@ -95,7 +95,7 @@ feature 'for more complex forms' do
     match_content_of(page, '
       form
         textarea[name="user[foo]"]
-        input[name="user[foo]"][type="string"][value="bar"]
+        input[name="user[foo]"][type="text"][value="bar"]
         input[name="user[foo]"][type="range"][value="5"][min][max][step]
         input[name="user[foo]"][type="number"][value="5"][min][max][step]
         input[name="user[foo]"][type="datetime"][value][min][max]
