@@ -90,7 +90,7 @@ feature 'for more complex forms' do
   end
 
   scenario 'with all inputs type' do
-    visit '/all_inputs'
+    visit '/inputs'
 
     match_content_of(page, '
       form
