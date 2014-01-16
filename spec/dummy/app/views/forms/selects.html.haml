@@ -1,7 +1,9 @@
 - universe = Universe.new
 
 = awesome_form_for universe, url: '#' do |form|
-  = form.input :light_years, as: :select, collection: [1,10,100,1000], include_blank: true
+  = form.input :bar, as: :select, collection: [1,10,100,1000], include_blank: true, selected: [100]
+
+  = form.input :foo, as: :select, collection: %w(a b c d e f), include_blank: true, selected: %w(a b e), multiple: true
 
   = form.actions
 

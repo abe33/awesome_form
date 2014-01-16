@@ -71,12 +71,21 @@ feature 'for more complex forms' do
 
     match_content_of(page, '
       form
-        select[name="universe[light_years]"]
+        select[name="universe[bar]"]
           option[value=""]
           option[value="1"]
           option[value="10"]
-          option[value="100"]
+          option[value="100"][selected]
           option[value="1000"]
+
+        select[name="universe[foo][]"][multiple]
+          option[value=""]
+          option[value="a"][selected]
+          option[value="b"][selected]
+          option[value="c"]
+          option[value="d"]
+          option[value="e"][selected]
+          option[value="f"]
     ')
   end
 end
