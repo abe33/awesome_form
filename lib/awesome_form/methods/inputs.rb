@@ -27,30 +27,28 @@ module AwesomeForm
       end
 
       def partial_for_input(input_options)
-        paths = partial_paths_for_input(input_options)
-
-        paths.select { |p| view_exists? p }.first
-      end
-
-      def partial_paths_for_input(input_options)
-        theme = AwesomeForm.theme
-
-        [
-          "awesome_form/inputs/#{model_name}/#{input_options[:attribute_name]}",
-          "awesome_form/#{theme}/inputs/#{model_name}/#{input_options[:attribute_name]}",
-
-          "awesome_form/inputs/#{input_options[:type]}",
-          "awesome_form/#{theme}/inputs/#{input_options[:type]}",
-          "awesome_form/default_theme/inputs/#{input_options[:type]}",
-
-          "awesome_form/inputs/default",
-          "awesome_form/#{theme}/inputs/default",
-          "awesome_form/default_theme/inputs/default"
-        ].uniq
+        partial_paths_for_input(input_options).select { |p| view_exists? p }.first
       end
 
       def wrapper_for_input(input_options)
-        "awesome_form/default_theme/wrappers/default"
+        partial_paths_for_input(input_options, :wrappers).select { |p| view_exists? p }.first
+      end
+
+      def partial_paths_for_input(input_options, scope=:inputs)
+        theme = AwesomeForm.theme
+
+        [
+          "awesome_form/#{scope}/#{model_name}/#{input_options[:attribute_name]}",
+          "awesome_form/#{theme}/#{scope}/#{model_name}/#{input_options[:attribute_name]}",
+
+          "awesome_form/#{scope}/#{input_options[:type]}",
+          "awesome_form/#{theme}/#{scope}/#{input_options[:type]}",
+          "awesome_form/default_theme/#{scope}/#{input_options[:type]}",
+
+          "awesome_form/#{scope}/default",
+          "awesome_form/#{theme}/#{scope}/default",
+          "awesome_form/default_theme/#{scope}/default"
+        ].uniq
       end
     end
   end

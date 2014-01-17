@@ -72,3 +72,15 @@ default input partial.
   7. `app/views/awesome_form/:theme/inputs/default`
   8. `app/views/awesome_form/default_theme/inputs/default`
 
+#### Inputs Wrappers
+
+The same kind of lookup is used for fields wrappers, but instead of looking into the `inputs` view directory, it'll look into the `wrappers` directory.
+
+  1. `app/views/awesome_form/wrappers/:object_name/:attribute_name`
+  2. `app/views/awesome_form/:theme/wrappers/:object_name/:attribute_name`
+  3. `app/views/awesome_form/wrappers/:attribute_type`
+  4. `app/views/awesome_form/:theme/wrappers/:attribute_type`
+  5. `app/views/awesome_form/default_theme/wrappers/:attribute_type`
+  6. `app/views/awesome_form/wrappers/default`
+  7. `app/views/awesome_form/:theme/wrappers/default`
+  8. `app/views/awesome_form/default_theme/wrappers/default`
