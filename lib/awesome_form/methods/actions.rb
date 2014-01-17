@@ -27,9 +27,12 @@ module AwesomeForm
       end
 
       def partial_for_action(action_options)
-        paths = partial_paths_for_action(action_options)
+        partial_paths_for_action(action_options).select { |p| view_exists? p }.first
+      end
 
-        paths.select { |p| view_exists? p }.first
+
+      def wrapper_for_action(action_options)
+        partial_paths_for_action_wrapper(action_options).select { |p| view_exists? p }.first
       end
 
       def partial_paths_for_action(action_options)
@@ -50,7 +53,18 @@ module AwesomeForm
         ].uniq
       end
 
-      def wrapper_for_action(action_options)
+      def partial_paths_for_action_wrapper(action_options)
+        theme = AwesomeForm.theme
+        action = action_options[:action]
+
+        [
+          "awesome_form/wrappers/#{model_name}/#{action}",
+          "awesome_form/#{theme}/wrappers/#{model_name}/#{action}",
+
+          "awesome_form/wrappers/#{action}",
+          "awesome_form/#{theme}/wrappers/#{action}",
+          "awesome_form/default_theme/wrappers/#{action}"
+        ].uniq
       end
     end
   end

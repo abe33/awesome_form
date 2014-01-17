@@ -5,7 +5,7 @@
 [![Code Climate](https://codeclimate.com/github/abe33/awesome_form.png)](https://codeclimate.com/github/abe33/awesome_form)
 [![Dependency Status](https://gemnasium.com/abe33/awesome_form.png)](https://gemnasium.com/abe33/awesome_form)
 
-`AwesomeForm` is yet another form helper for `Rails`, but, contrary to `Formtastic` and `SimpleForm` it rely on partial views instead of html helpers.
+`AwesomeForm` is yet another form helper for `Rails`, but, contrary to `Formtastic` and `SimpleForm` it relies on partial views instead of html helpers.
 
 Each input type is a partial in its theme directory, and wrappers are made using the `layout` option of the `render` method.
 
@@ -29,7 +29,7 @@ Using `AwesomeForm` doesn't differ much of using `Formtastic` or `SimpleForm`:
 
 ### Model Attributes Discovery
 
-When using the `inputs` method without any arguments, the form builder will attempt to discover attributes of the model. By default it'll generates an input for every columns of the model as well as for each association (both `belongs_to` and `has_many` associations).
+When using the `inputs` method without any arguments, the form builder will attempt to discover attributes of the model. By default it'll generate an input for every column of the model as well as for each association (both `belongs_to` and `has_many` associations).
 
 Columns can be excluded by adding them to the `AwesomeForm.excluded_columns` array. By default, only timestamps columns are ignored.
 
@@ -84,3 +84,30 @@ The same kind of lookup is used for fields wrappers, but instead of looking into
   6. `app/views/awesome_form/wrappers/default`
   7. `app/views/awesome_form/:theme/wrappers/default`
   8. `app/views/awesome_form/default_theme/wrappers/default`
+
+Fields wrappers are just layouts, and as every layout, the content of the view is injected where the `yield` keyword is found in the layout.
+
+#### Action Views Lookup
+
+A similar lookup is performed to find actions's views and wrappers:
+
+For the action itself:
+
+  1. `awesome_form/actions/:object_name/:action`
+  2. `awesome_form/:theme/actions/:object_name/:action`
+  3. `awesome_form/actions/:action`
+  4. `awesome_form/:theme/actions/:action`
+  5. `awesome_form/default_theme/actions/:action`
+  6. `awesome_form/actions/default`
+  7. `awesome_form/:theme/actions/default`
+  8. `awesome_form/default_theme/actions/default`
+
+And for the wrapper:
+
+  1. `awesome_form/wrappers/:object_name/:action`
+  2. `awesome_form/:theme/wrappers/:object_name/:action`
+  3. `awesome_form/wrappers/:action`
+  4. `awesome_form/:theme/wrappers/:action`
+  5. `awesome_form/default_theme/wrappers/:action`
+
+As you may notice, the action wrapper lookup doesn't fallback on any default.
