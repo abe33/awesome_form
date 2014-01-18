@@ -1,12 +1,16 @@
 require 'awesome_form/methods/attributes'
 require 'awesome_form/methods/inputs'
 require 'awesome_form/methods/actions'
+require 'awesome_form/methods/naming'
+require 'awesome_form/methods/labels'
 
 module AwesomeForm
   class FormBuilder < ActionView::Helpers::FormBuilder
     include AwesomeForm::Methods::Attributes
     include AwesomeForm::Methods::Inputs
     include AwesomeForm::Methods::Actions
+    include AwesomeForm::Methods::Naming
+    include AwesomeForm::Methods::Labels
 
     def initialize(*)
       super
@@ -22,43 +26,6 @@ module AwesomeForm
       prefix = path_elements.join('/')
 
       @template.lookup_context.exists? view, [prefix]
-    end
-
-    def input_name(attribute_name)
-      "#{object_name}[#{attribute_name}]"
-    end
-
-    def input_id(attribute_name)
-      "#{object_name.underscore}_#{attribute_name}"
-    end
-
-    def collection_name(attribute_name, index=nil)
-      "#{object_name}[#{attribute_name}][#{index}]"
-    end
-
-    def input_label(attribute_name)
-      I18n.t("awesome_form.labels.#{model_name}.#{attribute_name}", default: attribute_name.to_s.humanize)
-    end
-
-    def action_label(action)
-      I18n.t("awesome_form.actions.#{model_name}.#{action}", {
-        default: I18n.t("awesome_form.actions.#{action}", {
-          default: action.to_s.humanize
-        })
-      })
-    end
-
-    def association_name(attribute_name)
-      reflection = association_for_attribute(attribute_name)
-
-      case reflection.macro
-      when :belongs_to then input_name "#{attribute_name}_id"
-      when :has_many then collection_name "#{attribute_name.to_s.singularize}_ids"
-      when :has_one
-        raise "Can't create the association name for a :has_one association"
-      else
-        raise "Unknown association #{reflection.macro}"
-      end
     end
 
     def filter_attributes_for(html, options)
