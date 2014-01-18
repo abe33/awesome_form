@@ -9,6 +9,7 @@ Dummy::Application.routes.draw do
   get '/selects', to: 'forms#selects'
   get '/inputs', to: 'forms#inputs'
   get '/actions', to: 'forms#actions'
+  get '/wrappers', to: 'forms#wrappers'
   get '/data', to: 'forms#data'
 
 end

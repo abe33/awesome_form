@@ -8,7 +8,14 @@ module AwesomeForm
           keys, options = filter_arguments(*args)
           keys = send("default_keys_for_#{plural}") if keys.empty?
 
-          keys.map {|f| send name, f, options }.join("\n").html_safe
+          paths = [
+            "awesome_form/wrappers/_#{plural}",
+            "awesome_form/#{AwesomeForm.theme}/wrappers/_#{plural}",
+            "awesome_form/default_theme/wrappers/_#{plural}",
+          ]
+          text = keys.map { |f| send name, f, options }.join("\n").html_safe
+
+          render text: text, layout: lookup_views(paths)
         end
 
         define_method name do |key, options={}, &block|

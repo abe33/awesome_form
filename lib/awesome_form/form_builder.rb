@@ -22,10 +22,14 @@ module AwesomeForm
 
     def view_exists?(view)
       path_elements = view.split('/')
-      view = "_#{path_elements.pop}"
+      view = "_#{path_elements.pop}".squeeze '_'
       prefix = path_elements.join('/')
 
       @template.lookup_context.exists? view, [prefix]
+    end
+
+    def lookup_views(paths)
+      paths.select { |p| view_exists? p }.first
     end
 
     def filter_attributes_for(html, options)

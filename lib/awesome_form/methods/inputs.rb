@@ -27,7 +27,7 @@ module AwesomeForm
       end
 
       def partial_for_input(input_options)
-        partial_paths_for_input(input_options).select { |p| view_exists? p }.first
+        lookup_views partial_paths_for_input(input_options)
       end
 
       def wrapper_for_input(input_options)
