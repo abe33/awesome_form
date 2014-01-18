@@ -28,8 +28,15 @@ module AwesomeForm
       "#{object_name}[#{attribute_name}]"
     end
 
+    def input_id(attribute_name)
+      "#{object_name.underscore}_#{attribute_name}"
+    end
     def collection_name(attribute_name, index=nil)
       "#{object_name}[#{attribute_name}][#{index}]"
+    end
+
+    def input_label(attribute_name)
+      I18n.t("awesome_form.labels.#{model_name}.#{attribute_name}", default: attribute_name.to_s.humanize)
     end
 
     def association_name(attribute_name)

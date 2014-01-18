@@ -4,6 +4,7 @@
 
   attrs = {
     name: multiple ? builder.collection_name(attribute_name) : builder.input_name(attribute_name),
+    id: builder.input_id(attribute_name),
     multiple: multiple
   }
   if defined? input_html
