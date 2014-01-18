@@ -14,8 +14,12 @@ module AwesomeForm
       end
 
       def options_for_action(action, options)
-        options = {}
-        options[:action] = action.to_sym
+        options = {
+          action: action.to_sym,
+          object_name: object_name,
+          object: object,
+          builder: self
+        }
 
         case action.to_sym
         when :submit then options[:name] = :commit
