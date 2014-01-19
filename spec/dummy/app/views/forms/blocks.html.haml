@@ -1,3 +1,6 @@
 = awesome_form_for User.new, url: '#' do |form|
   = form.inputs :name do
     = form.input :email
+
+  = form.actions do
+    = form.action :submit

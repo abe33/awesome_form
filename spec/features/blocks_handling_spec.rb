@@ -8,6 +8,9 @@ feature 'block handling' do
       fieldset.inputs
         input[name="user[name]"]
         input[name="user[email]"]
+
+      fieldset.actions
+        button[type="submit"]
     ')
   end
 end
