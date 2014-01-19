@@ -13,5 +13,6 @@ Dummy::Application.routes.draw do
   get '/blocks', to: 'forms#blocks'
   get '/data', to: 'forms#data'
   get '/check_boxes', to: 'forms#check_boxes'
+  get '/radios', to: 'forms#radios'
 
 end

@@ -40,6 +40,12 @@ feature 'for more complex forms' do
     page.all('input[type="checkbox"]').length.should == 2
   end
 
+  scenario 'with radio collection' do
+    visit '/radios'
+
+    page.all('input[type="radio"]').length.should == 2
+  end
+
   scenario 'with all inputs type' do
     visit '/inputs'
 

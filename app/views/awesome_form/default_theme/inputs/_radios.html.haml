@@ -1,0 +1,19 @@
+- selected ||= []
+
+- collection.each do |value, label|
+  :ruby
+    id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
+    attrs = {
+      name: builder.input_name(attribute_name),
+      id: id,
+      type: :radio,
+      value: value,
+      checked: selected.include?(value),
+    }
+    if defined? input_html
+      attrs.merge! builder.filter_attributes_for(:input, input_html)
+    end
+
+  %p
+    %input{attrs}
+    %label{for: id}= label || value.to_s.humanize
