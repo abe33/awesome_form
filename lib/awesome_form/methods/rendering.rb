@@ -18,7 +18,7 @@ module AwesomeForm
               "awesome_form/default_theme/wrappers/_#{plural}",
             ]
 
-            text = ''
+            text = default_#{plural}_content(options)
             text << keys.map { |f| #{name} f, options }.join("\n").html_safe
             text << @template.capture(self, &block) if block_given?
 

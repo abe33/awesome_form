@@ -26,6 +26,12 @@ module AwesomeForm
         .merge(options)
       end
 
+      def default_inputs_content(options)
+        content = ''
+        content << "<legend>#{options[:legend]}</legend>" if options[:legend].present?
+        content
+      end
+
       def partial_for_input(input_options)
         lookup_views partial_paths_for_input(input_options)
       end
