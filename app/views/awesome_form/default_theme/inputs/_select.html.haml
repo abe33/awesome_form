@@ -16,4 +16,4 @@
     %option{value: ''}
 
   - collection.each do |value, label|
-    %option{value: value, selected: selected.include?(value)}= label || value
+    %option{value: value, selected: selected.include?(value)}= label || value.to_s.humanize
