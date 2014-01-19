@@ -7,17 +7,17 @@ feature 'wrappers' do
     match_content_of(page,'
       form
         .field
-          label[for="user_email"]
+          label[for="user_email_input"]
           .controls
-            input[name="user[email]"][id="user_email"]
+            input[name="user[email]"][id="user_email_input"]
 
         .field
-          input[name="user[remember_me]"][id="user_remember_me"]
-          label[for="user_remember_me"]
+          input[name="user[remember_me]"][id="user_remember_me_input"]
+          label[for="user_remember_me_input"]
     ')
 
-    expect(page.find('label[for="user_email"]')).to have_content 'Email'
-    expect(page.find('label[for="user_remember_me"]')).to have_content 'Remember me'
+    expect(page.find('label[for="user_email_input"]')).to have_content 'Email'
+    expect(page.find('label[for="user_remember_me_input"]')).to have_content 'Remember me'
   end
 
   scenario 'for inputs and actions' do
@@ -30,5 +30,7 @@ feature 'wrappers' do
       fieldset.actions
         button
     ')
+
+    expect(page.find('legend')).to have_content 'Irrelevant'
   end
 end

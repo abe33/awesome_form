@@ -24,7 +24,7 @@ module AwesomeForm
       end
 
       def input_id(attribute_name)
-        "#{object_name.underscore}_#{attribute_name}"
+        "#{object_name.underscore}_#{attribute_name}_input"
       end
 
     end
