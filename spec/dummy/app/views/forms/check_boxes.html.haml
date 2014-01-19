@@ -1,0 +1,4 @@
+= awesome_form_for User.new, url: '#', method: :get do |form|
+  = form.input :foo, as: :check_boxes, collection: ['foo', 'bar']
+
+  = form.actions

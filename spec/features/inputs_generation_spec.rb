@@ -34,6 +34,12 @@ feature 'for more complex forms' do
     ')
   end
 
+  scenario 'with checkbox collection' do
+    visit '/check_boxes'
+
+    page.all('input[type="checkbox"]').length.should == 2
+  end
+
   scenario 'with all inputs type' do
     visit '/inputs'
 

@@ -12,5 +12,6 @@ Dummy::Application.routes.draw do
   get '/wrappers', to: 'forms#wrappers'
   get '/blocks', to: 'forms#blocks'
   get '/data', to: 'forms#data'
+  get '/check_boxes', to: 'forms#check_boxes'
 
 end
