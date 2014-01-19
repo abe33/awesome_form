@@ -47,8 +47,8 @@ module AwesomeForm
         action = action_options[:action]
 
         [
-          "awesome_form/actions/#{model_name}/#{action}",
-          "awesome_form/#{theme}/actions/#{model_name}/#{action}",
+          "awesome_form/actions/#{resource_name}/#{action}",
+          "awesome_form/#{theme}/actions/#{resource_name}/#{action}",
 
           "awesome_form/actions/#{action}",
           "awesome_form/#{theme}/actions/#{action}",
@@ -65,8 +65,8 @@ module AwesomeForm
         action = action_options[:action]
 
         [
-          "awesome_form/wrappers/#{model_name}/#{action}",
-          "awesome_form/#{theme}/wrappers/#{model_name}/#{action}",
+          "awesome_form/wrappers/#{resource_name}/#{action}",
+          "awesome_form/#{theme}/wrappers/#{resource_name}/#{action}",
 
           "awesome_form/wrappers/#{action}",
           "awesome_form/#{theme}/wrappers/#{action}",

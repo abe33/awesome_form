@@ -39,11 +39,15 @@ module AwesomeForm
       end
     end
 
-  protected
-
     def model_name
-      object.class.name.underscore.pluralize
+      object.class.name.underscore
     end
+
+    def resource_name
+      model_name.pluralize
+    end
+
+  protected
 
     def filter_arguments(*args)
       options = {}

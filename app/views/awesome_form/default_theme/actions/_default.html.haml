@@ -1,2 +1,8 @@
+:ruby
+  attrs = {
+    type: action,
+    name: name,
+    class: "#{builder.model_name} #{action}",
+  }
 
-%button{ type: action, name: name }= builder.action_label(action)
+%button.action{attrs}= builder.action_label(action)

@@ -24,6 +24,9 @@ module AwesomeForm
         }
         .merge(type_options)
         .merge(options)
+        .reverse_merge({
+          input_html: {}
+        })
       end
 
       def default_inputs_content(options)
@@ -44,8 +47,8 @@ module AwesomeForm
         theme = AwesomeForm.theme
 
         [
-          "awesome_form/#{scope}/#{model_name}/#{input_options[:attribute_name]}",
-          "awesome_form/#{theme}/#{scope}/#{model_name}/#{input_options[:attribute_name]}",
+          "awesome_form/#{scope}/#{resource_name}/#{input_options[:attribute_name]}",
+          "awesome_form/#{theme}/#{scope}/#{resource_name}/#{input_options[:attribute_name]}",
 
           "awesome_form/#{scope}/#{input_options[:type]}",
           "awesome_form/#{theme}/#{scope}/#{input_options[:type]}",

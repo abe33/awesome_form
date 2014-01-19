@@ -3,11 +3,10 @@
     name: builder.input_name(attribute_name),
     id: builder.input_id(attribute_name),
     type: :checkbox,
+    class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
     value: '1',
     checked: object.try(attribute_name),
   }
-  if defined? input_html
-    attrs.merge! builder.filter_attributes_for(:input, input_html)
-  end
+  attrs.merge! builder.filter_attributes_for(:input, input_html)
 
-%input{attrs}
+%input.input{attrs}

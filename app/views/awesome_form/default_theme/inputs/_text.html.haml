@@ -1,10 +1,9 @@
 :ruby
   attrs = {
     name: builder.input_name(attribute_name),
+    class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
     id: builder.input_id(attribute_name),
   }
-  if defined? input_html
-    attrs.merge! builder.filter_attributes_for(:textarea, input_html)
-  end
+  attrs.merge! builder.filter_attributes_for(:textarea, input_html)
 
-%textarea{attrs}= object.try(attribute_name)
+%textarea.input{attrs}= object.try(attribute_name)
