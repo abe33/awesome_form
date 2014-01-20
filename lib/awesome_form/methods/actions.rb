@@ -30,10 +30,6 @@ module AwesomeForm
         options.merge(options)
       end
 
-      def default_actions_content(options)
-        ''
-      end
-
       def partial_for_action(action_options)
         partial_paths_for_action(action_options).select { |p| view_exists? p }.first
       end

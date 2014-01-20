@@ -5,4 +5,10 @@
     class: AwesomeForm.default_inputs_class,
   }.merge(inputs_html)
 
-%fieldset{fieldset_attrs}= yield
+%fieldset{fieldset_attrs}
+  - if defined? legend
+    %legend
+      / It's known fact that legend can't be styled well
+      %span= legend
+
+  = yield
