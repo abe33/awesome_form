@@ -24,10 +24,10 @@ feature 'wrappers' do
     visit '/wrappers'
 
     match_content_of(page, '
-      fieldset.inputs
+      fieldset.inputs.foo
         input
 
-      fieldset.actions
+      fieldset.actions.bar
         button
     ')
 
