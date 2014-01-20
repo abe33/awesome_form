@@ -1,5 +1,6 @@
 ## AwesomeForm
 
+[![Gem Version](https://badge.fury.io/rb/awesome_form.png)](http://badge.fury.io/rb/awesome_form)
 [![Build Status](https://travis-ci.org/abe33/awesome_form.png)](https://travis-ci.org/abe33/awesome_form)
 [![Coverage Status](https://coveralls.io/repos/abe33/awesome_form/badge.png)](https://coveralls.io/r/abe33/awesome_form)
 [![Code Climate](https://codeclimate.com/github/abe33/awesome_form.png)](https://codeclimate.com/github/abe33/awesome_form)
