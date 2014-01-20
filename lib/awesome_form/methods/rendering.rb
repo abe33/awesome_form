@@ -8,7 +8,7 @@ module AwesomeForm
 
           def #{plural}(*args, &block)
             keys, options = filter_arguments(*args)
-            keys = send("default_keys_for_#{plural}") if keys.empty?
+            keys = send("default_keys_for_#{plural}") if keys.empty? && !block_given?
 
             theme = AwesomeForm.theme
 
