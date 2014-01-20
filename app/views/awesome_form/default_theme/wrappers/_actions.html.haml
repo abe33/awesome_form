@@ -1,2 +1,8 @@
+:ruby
+  actions_html ||= {}
 
-%fieldset.actions= yield
+  fieldset_attrs = {
+    class: AwesomeForm.default_actions_class,
+  }.merge(actions_html)
+
+%fieldset{fieldset_attrs}= yield

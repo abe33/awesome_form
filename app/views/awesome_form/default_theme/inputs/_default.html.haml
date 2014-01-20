@@ -2,10 +2,15 @@
   attrs = {
     name: builder.input_name(attribute_name),
     id: builder.input_id(attribute_name),
-    class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
+    class: [
+      AwesomeForm.default_input_class,
+      builder.model_name,
+      attribute_name,
+      input_html.delete(:class)
+    ].join(' '),
     type: type == :string ? :text : type,
     value: object.try(attribute_name),
   }
   attrs.merge! builder.filter_attributes_for(:input, input_html)
 
-%input.input{attrs}
+%input{attrs}

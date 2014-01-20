@@ -1,2 +1,8 @@
+:ruby
+  inputs_html ||= {}
 
-%fieldset.inputs= yield
+  fieldset_attrs = {
+    class: AwesomeForm.default_inputs_class,
+  }.merge(inputs_html)
+
+%fieldset{fieldset_attrs}= yield

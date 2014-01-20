@@ -2,7 +2,11 @@
   attrs = {
     type: action,
     name: name,
-    class: "#{builder.model_name} #{action}",
+    class: [
+      AwesomeForm.default_action_class,
+      builder.model_name,
+      action
+    ].join(' '),
   }
 
-%button.action{attrs}= builder.action_label(action)
+%button{attrs}= builder.action_label(action)

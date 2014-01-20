@@ -1,4 +1,17 @@
-.field
-  %label{for: builder.input_id(attribute_name)}
+:ruby
+  wrapper_html ||= {}
+  label_html ||= {}
+
+  wrapper_attrs = {
+    class: AwesomeForm.default_input_wrapper_class,
+  }.merge(wrapper_html)
+
+  label_attrs = {
+    for: builder.input_id(attribute_name),
+    class: AwesomeForm.default_label_class,
+  }.merge(label_html)
+
+%div{wrapper_attrs}
+  %label{label_attrs}
     = builder.input_label(attribute_name)
   .controls= yield
