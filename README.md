@@ -12,7 +12,7 @@ Each input type is a partial in its theme directory, and wrappers are made using
 
 For instance, a boolean field will be rendered using a partial named `_boolean` in the `app/views/awesome_form` directory (See below for further explanation on partials lookup).
 
-The same principles apply with form actions, each action is map to a partial file and eventually wrapped using a layout file.
+The same principles apply with form actions, each action is mapped to a partial file and eventually wrapped using a layout file.
 
 ### Usage
 
@@ -30,7 +30,7 @@ Using `AwesomeForm` doesn't differ much of using `Formtastic` or `SimpleForm`:
 
 ### Model Attributes Discovery
 
-When using the `inputs` method without any arguments, the form builder will attempt to discover attributes of the model. By default it'll generate an input for every column of the model as well as for each association (both `belongs_to` and `has_many` associations).
+When using the `inputs` method without any symbols as arguments (an options hash can be passed), the form builder will attempt to discover attributes of the model. By default it'll generate an input for every column of the model as well as for each association (both `belongs_to` and `has_many` associations).
 
 Columns can be excluded by adding them to the `AwesomeForm.excluded_columns` array. By default, only timestamps columns are ignored.
 
@@ -40,7 +40,7 @@ AwesomeForm.setup do |config|
 end
 ```
 
-By default, both `belongs_to` and `has_many` associations appears in discovered model's attributes. The default association are editable using
+By default, both `belongs_to` and `has_many` associations appears in discovered model's attributes. The default associations are configurable using
 the `AwesomeForm.default_associations` config.
 
 ```ruby
@@ -59,15 +59,15 @@ at the top level or in the selected theme:
   1. `app/views/awesome_form/inputs/:object_name/:attribute_name`
   2. `app/views/awesome_form/:theme/inputs/:object_name/:attribute_name`
 
-If a partial cannot be found for the model attribute, we look for a
-partial for the attribute's type:
+    If a partial cannot be found for the model attribute, we look for a
+    partial for the attribute's type:
 
   3. `app/views/awesome_form/inputs/:attribute_type`
   4. `app/views/awesome_form/:theme/inputs/:attribute_type`
   5. `app/views/awesome_form/default_theme/inputs/:attribute_type`
 
-And if there's no partial for the attribute's type, we look for the
-default input partial.
+    And if there's no partial for the attribute's type, we look for the
+    default input partial.
 
   6. `app/views/awesome_form/inputs/default`
   7. `app/views/awesome_form/:theme/inputs/default`
