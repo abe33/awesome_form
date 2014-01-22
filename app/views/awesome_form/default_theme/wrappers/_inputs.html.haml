@@ -11,7 +11,8 @@
 %fieldset{fieldset_attrs}
   - if defined? legend
     %legend
-      / It's known fact that legend can't be styled well
+      / It's known fact that legend can't be styled well and have
+      / to be wrapped in a span that will be styled instead.
       %span= legend
 
   = yield
