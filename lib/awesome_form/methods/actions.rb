@@ -18,7 +18,9 @@ module AwesomeForm
           action: action.to_sym,
           object_name: object_name,
           object: object,
-          builder: self
+          model_name: model_name,
+          resource_name: resource_name,
+          builder: self,
         }
 
         case action.to_sym
