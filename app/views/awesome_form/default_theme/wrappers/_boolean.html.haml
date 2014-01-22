@@ -2,16 +2,31 @@
   wrapper_html ||= {}
   label_html ||= {}
 
+  has_error = object.errors.messages[attribute_name].present?
+
+  wrapper_error_class = has_error ? AwesomeForm.default_input_wrapper_error_class : nil
+
   wrapper_attrs = {
-    class: AwesomeForm.default_input_wrapper_class,
+    class: [
+      AwesomeForm.default_input_wrapper_class,
+      wrapper_error_class,
+      wrapper_html.delete(:class),
+    ].compact.join(' '),
   }.merge(wrapper_html)
 
   label_attrs = {
     for: builder.input_id(attribute_name),
-    class: AwesomeForm.default_label_class,
+    class: [
+      AwesomeForm.default_label_class,
+      label_html.delete(:class)
+    ].compact.join(' '),
   }.merge(label_html)
 
 %div{wrapper_attrs}
   = yield
   %label{label_attrs}
     = builder.input_label(attribute_name)
+
+  - if has_error
+    - object.errors.messages[attribute_name].each do |msg|
+      %span{ class: AwesomeForm.default_error_class }= msg

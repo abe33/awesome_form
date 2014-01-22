@@ -40,6 +40,12 @@ module AwesomeForm
   mattr_accessor :default_input_wrapper_class
   @@default_input_wrapper_class = 'field'
 
+  mattr_accessor :default_input_wrapper_error_class
+  @@default_input_wrapper_error_class = 'has-errors'
+
+    mattr_accessor :default_error_class
+  @@default_error_class = 'inline-error'
+
   mattr_accessor :legal_attributes
   @@legal_attributes = {
     input: %w(accept alt autocomplete autofocus checked dirname disabled form formaction formenctype formmethod formnovalidate formtarget height list max maxlength min multiple name pattern placeholder readonly required size src step type value width).map(&:to_sym),
