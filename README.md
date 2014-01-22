@@ -112,3 +112,28 @@ And for the wrapper:
   5. `awesome_form/default_theme/wrappers/:action`
 
 As you may notice, the action wrapper lookup doesn't fallback on any default.
+
+### Views Locals
+
+When rendering a view for an input, both the layout and the input partial receive many locals that contains data about the field.
+
+A basic input will receive:
+
+  * `attribute_name`: The name of the attribute as passed to the `input` method.
+  * `model_name`: The name of the model in `snake_case` format.
+  * `resource_name`: The pluraized name of the model in `snake_case` format.
+  * `object_name`: The name of the field prior to the call to `input`. For instance, when in a `fields_for` block for `user.created_at`, the `object_name` is equal `user[created_at]`.
+  * `object`: A reference to the target object of the form.
+  * `builder`: A reference to the builder object of the form.
+  * `type`: The type of input to generate for the attribute.
+
+And according to the model attribute type, the locals object will also contains more specialized properties:
+
+  * `column_type`: For a simple column (not an association), it will contains the type of the database column such as defined in the schema (`:integer`, `:string`, etc.).
+  * `association_type`: If the attribute is an association, the `association_type` is set with the name of the association (`:belongs_to`, `:has_many`, etc.).
+  * `collection`: When `type` is `select` or `association`, an array containing the possible values for the field.
+  * `selected`: When `type` is `select` or `association`, an array containing the selected values for the field.
+
+And of course all the options passed to the `input` method are available as locals in the view.
+
+Actions locals only differs in that `type` and `attribute_name` are replaced with `action` and `name`.

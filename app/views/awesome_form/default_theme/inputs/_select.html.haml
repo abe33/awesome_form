@@ -5,7 +5,7 @@
   attrs = {
     name: multiple ? builder.collection_name(attribute_name) : builder.input_name(attribute_name),
     id: builder.input_id(attribute_name),
-    class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
+    class: "#{model_name} #{attribute_name} #{input_html.delete(:class)}",
     multiple: multiple
   }
   attrs.merge! builder.filter_attributes_for(:select, input_html)

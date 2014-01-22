@@ -14,20 +14,22 @@ module AwesomeForm
       end
 
       def options_for_action(action, options)
-        options = {
+        action_options = {
           action: action.to_sym,
           object_name: object_name,
           object: object,
-          builder: self
+          model_name: model_name,
+          resource_name: resource_name,
+          builder: self,
         }
 
         case action.to_sym
-        when :submit then options[:name] = :commit
-        when :cancel then options[:name] = :cancel
-        when :reset then options[:name] = :reset
+        when :submit then action_options[:name] = :commit
+        when :cancel then action_options[:name] = :cancel
+        when :reset then action_options[:name] = :reset
         end
 
-        options.merge(options)
+        action_options.merge(options)
       end
 
       def partial_for_action(action_options)

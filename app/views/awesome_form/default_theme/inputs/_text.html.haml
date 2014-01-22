@@ -1,7 +1,7 @@
 :ruby
   attrs = {
     name: builder.input_name(attribute_name),
-    class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
+    class: "#{model_name} #{attribute_name} #{input_html.delete(:class)}",
     id: builder.input_id(attribute_name),
   }
   attrs.merge! builder.filter_attributes_for(:textarea, input_html)
