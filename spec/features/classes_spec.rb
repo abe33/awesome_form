@@ -6,7 +6,8 @@ feature 'semantic classes' do
 
     match_content_of(page, '
       form
-        input.input.user.email
+        div.field.user.email
+        div.field.user.dead.boolean
 
         button.action.user.submit
     ')

@@ -1,12 +1,17 @@
 :ruby
+  input_class = [
+    AwesomeForm.default_input_class,
+    input_html.delete(:class)
+  ].join(' ')
+
   attrs = {
     name: builder.association_name(attribute_name),
     id: builder.input_id(attribute_name),
-    class: "#{model_name} #{attribute_name} #{input_html.delete(:class)}",
+    class: input_class,
     multiple: multiple,
   }
 
-%select.input{attrs}
+%select{attrs}
   - if defined?(include_blank) && include_blank
     %option{value: ''}
 
