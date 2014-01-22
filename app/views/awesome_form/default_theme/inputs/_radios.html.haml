@@ -7,7 +7,7 @@
       name: builder.input_name(attribute_name),
       id: id,
       type: :radio,
-      class: "#{builder.model_name} #{attribute_name} #{input_html.delete(:class)}",
+      class: "#{model_name} #{attribute_name} #{input_html.delete(:class)}",
       value: value,
       checked: selected.include?(value),
     }
