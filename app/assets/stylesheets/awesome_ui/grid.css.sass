@@ -1,0 +1,13 @@
+
+.row
+  letter-spacing: -0.31em
+
+  .column
+    display: inline-block
+    letter-spacing: normal
+
+  @for $i from 1 through 10
+    $width: 100% / $i
+    .column-#{$i}
+      width: $width
+

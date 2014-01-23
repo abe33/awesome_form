@@ -1,0 +1,18 @@
+:ruby
+  input_class = [
+    AwesomeForm.default_input_class,
+    input_html.delete(:class)
+  ].join(' ')
+
+  attrs = {
+    name: builder.input_name(attribute_name),
+    id: builder.input_id(attribute_name),
+    type: :checkbox,
+    class: input_class,
+    value: '1',
+    checked: object.try(attribute_name),
+  }
+  attrs.merge! builder.filter_attributes_for(:input, input_html)
+
+%input{attrs}
+.check
