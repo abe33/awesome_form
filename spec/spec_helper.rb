@@ -32,4 +32,8 @@ RSpec.configure do |config|
 
   config.order = "random"
 
+  config.before(:all) do
+    AwesomeForm.theme = :default_theme
+  end
+
 end
