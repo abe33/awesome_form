@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
-gemspec
+gemspec name: 'awesome_form'
+gemspec name: 'awesome_ui'
 
 # To use debugger
 gem 'debugger'
@@ -12,6 +13,7 @@ gem 'coveralls', require: false
 gem 'rails', '>= 3.2.13'
 gem 'json'
 gem 'coffee-rails', '>= 3.2.1'
+gem 'sass-rails', '>= 3.2.1'
 gem 'haml-rails'
 
 group :development, :test do
