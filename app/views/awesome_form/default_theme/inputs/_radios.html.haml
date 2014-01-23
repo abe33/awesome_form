@@ -1,23 +1,27 @@
-- selected ||= []
+:ruby
+  selected ||= []
+  columns ||= 1
 
-- collection.each do |value, label|
-  :ruby
-    input_class = [
-      AwesomeForm.default_input_class,
-      input_html.delete(:class)
-    ].join(' ')
+- collection.each_slice(columns) do |slice|
+  .row
+    - slice.each do |value, label|
+      :ruby
+        input_class = [
+          AwesomeForm.default_input_class,
+          input_html.delete(:class)
+        ].join(' ')
 
-    id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
-    attrs = {
-      name: builder.input_name(attribute_name),
-      id: id,
-      type: :radio,
-      class: input_class,
-      value: value,
-      checked: selected.include?(value),
-    }
-    attrs.merge! builder.filter_attributes_for(:input, input_html)
+        id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
+        attrs = {
+          name: builder.input_name(attribute_name),
+          id: id,
+          type: :radio,
+          class: input_class,
+          value: value,
+          checked: selected.include?(value),
+        }
+        attrs.merge! builder.filter_attributes_for(:input, input_html)
 
-  %p
-    %input{attrs}
-    %label{for: id}= label || value.to_s.humanize
+      .column{ class: "column-#{columns}" }
+        %input{attrs}
+        %label{for: id}= label || value.to_s.humanize

@@ -38,12 +38,30 @@ feature 'for more complex forms' do
     visit '/check_boxes'
 
     page.all('input[type="checkbox"]').length.should == 2
+
+    page.all('.column-2').length.should == 2
+    page.all('.row').length.should == 1
+    match_content_of(page, '
+      .check_boxes
+        .row
+          .column-2
+            input
+    ')
   end
 
   scenario 'with radio collection' do
     visit '/radios'
 
     page.all('input[type="radio"]').length.should == 2
+
+    page.all('.column-2').length.should == 2
+    page.all('.row').length.should == 1
+    match_content_of(page, '
+      .radios
+        .row
+          .column-2
+            input
+    ')
   end
 
   scenario 'with all inputs type' do
