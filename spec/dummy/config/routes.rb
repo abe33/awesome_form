@@ -15,5 +15,6 @@ Dummy::Application.routes.draw do
   get '/check_boxes', to: 'forms#check_boxes'
   get '/radios', to: 'forms#radios'
   get '/with_errors', to: 'forms#with_errors'
+  get '/styles', to: 'forms#styles'
 
 end
