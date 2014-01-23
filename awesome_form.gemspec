@@ -13,7 +13,14 @@ Gem::Specification.new do |s|
   s.summary     = "Yet another form handler for rails."
   s.description = "Yet another form handler for rails."
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = Dir[
+    "{app/views/awesome_form,lib/awesome_form}/**/*",
+    "lib/awesome_form.rb",
+    "MIT-LICENSE",
+    "Rakefile",
+    "README.md"
+  ]
+
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", "~> 4.0.2"
