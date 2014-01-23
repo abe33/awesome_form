@@ -4,5 +4,5 @@
   = form.input :foo, as: :number, input_html: { min: 1, max: 10, step: 1, value: 5 }
   = form.input :foo, as: :range, input_html: { min: 1, max: 10, step: 1, value: 5}
   = form.input :foo, as: :datetime, input_html: { min: 1.day.ago, max: 1.day.from_now, value: Time.now }
-  = form.input :foo, as: :checkbox, input_html: { value: 1, checked: true }
+  = form.input :foo, as: :boolean, input_html: { value: 1, checked: true }
   = form.input :foo, as: :file
