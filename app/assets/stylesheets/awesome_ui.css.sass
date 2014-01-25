@@ -2,7 +2,7 @@
 @import awesome_ui/grid
 @import awesome_ui/variables
 
-@-moz-document url-prefix()
++gecko-only
   .a legend span
     top: -30px !important
     left: 0 !important
@@ -47,6 +47,7 @@
       text-shadow: 0 1px 1px $red
 
     & + *
+      -webkit-margin-collapse: separate
       margin-top: 32px
 
   .field
