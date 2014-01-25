@@ -1,6 +1,32 @@
+=vendor-prefix($property, $value)
+  -webkit-#{$property}: #{$value}
+  -moz-#{$property}: #{$value}
+  -ms-#{$property}: #{$value}
+  -o-#{$property}: #{$value}
+  #{$property}: #{$value}
+
 =box-sizing($mode)
-  -webkit-box-sizing: $mode
-  -moz-box-sizing: $mode
-  -ms-box-sizing: $mode
-  -o-box-sizing: $mode
-  box-sizing: $mode
+  +vendor-prefix(box-sizing, $mode)
+
+=rem($property, $value)
+  #{$property}: $value * $base-font-size
+  #{$property}: #{$value}rem
+
+=text-ellipsis()
+  overflow: hidden
+  white-space: nowrap
+  +vendor-prefix(text-overflow, ellipsis)
+
+=opacity($trans)
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})"
+  filter: alpha(opacity=($trans * 100))
+
+  +vendor-prefix(opacity, $trans)
+
+=webkit-only()
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+    @content
+
+=gecko-only()
+  @-moz-document url-prefix()
+    @content
