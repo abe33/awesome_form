@@ -1,0 +1,35 @@
+.input[type=radio]
+  display: none
+
+  & + label
+    text-align: left
+    width: auto
+    cursor: pointer
+    position: relative
+    padding-right: 0
+    padding-left: 48px
+
+    &:before
+      content: ''
+      display: block
+      border-radius: 18px
+      position: absolute
+      top: 0
+      left: 0
+      border: 1px solid $grey
+      background: $grey_lighter
+      height: 32px
+      width: 32px
+      transition: border-width 0.3s, border-color 0.1s
+      +box-sizing(border-box)
+
+  &:checked + label
+    &:before
+      border-width: 16px
+      border-color: lighten($red, 30%)
+
+.has-errors
+  [type=radio] + label
+    &:before
+      box-shadow: 0 0 4px -2px $red
+

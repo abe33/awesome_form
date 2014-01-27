@@ -1,0 +1,62 @@
+.boolean .check
+  margin-left: 204px
+
+.has-errors
+  [type=checkbox] + .check
+    &:before
+      box-shadow: 0 0 4px -2px $red
+
+.input[type=checkbox]
+  display: none
+
+  & + .check
+    width: 48px
+    position: relative
+    display: inline-block
+    vertical-align: top
+
+    &:before, &:after
+      +box-sizing(border-box)
+      content: ''
+      display: block
+      height: 32px
+      position: absolute
+      left: 0
+
+    &:before
+      top: 0
+      border: 1px solid $grey
+      border-radius: 18px
+      background: $grey_lighter
+      width: 48px
+      transition: border-width 0.3s, border-color 0.1s ease 0.3s
+
+    &:after
+      top: 1px
+      background: $grey_lighter
+      border-radius: 50%
+      height: 30px
+      left: 1px
+      right: 17px
+      box-shadow: 0 2px 7px -2px transparentize($grey_very_dark, 0.6), 1px 2px 1px transparentize($grey_very_dark, 0.8)
+      transition: left 0.2s ease-in, right 0.2s ease-out
+
+    & + label
+      padding-left: 64px
+      margin-left: -54px
+      padding-right: 0px
+      z-index: 1
+      position: relative
+      text-align: left
+      width: auto
+      cursor: pointer
+
+  &:checked + .check
+    &:after
+      left: 17px
+      right: 1px
+
+    &:before
+      transition: border-width 0.3s, border-color 0.1s
+      border-width: 16px
+      border-color: lighten($red, 30%)

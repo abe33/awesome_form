@@ -1,226 +1,30 @@
 @import awesome_ui/mixins
 @import awesome_ui/grid
 @import awesome_ui/variables
+@import awesome_ui/classes
+@import awesome_ui/actions/default
+@import awesome_ui/inputs/default
+@import awesome_ui/inputs/boolean
+@import awesome_ui/inputs/radios
+@import awesome_ui/wrappers/inputs
+@import awesome_ui/wrappers/field
+@import awesome_ui/wrappers/actions
 
-+gecko-only
-  .a legend span
-    top: -30px !important
-    left: 0 !important
-
-.field label, .inputs legend, .actions legend, .action, .input, .inline-error
-  font-family: Helvetica
-  font-size: 1em
-  font-weight: 300
-  line-height: 0.8em
-  color: $grey_extra_dark
-
-.inputs, .actions
-  border: none
+.field label,
+.inputs legend,
+.actions legend,
+.action,
+.input,
+.inline-error
+  @extend %text-default
 
 .inputs
-  background: $grey_light
-  padding: 0
-  position: relative
-  border-radius: 6px
+  .row
+    width: 350px
 
-  legend
-    width: auto
-    vertical-align: bottom
-    font-weight: 500
-
-    span
-      display: block
-      position: absolute
-      margin: 0
-      height: 11px
-      top: 0
-      left: 0
-      right: 0
-      width: auto
-      padding: 10px 20px
-      background-color: $grey_extra_darker
-      background-image: linear-gradient(to bottom, $grey_extra_darker_2 0%, $grey_extra_darker 100%)
-      border-bottom: 1px solid $red
-      color: $grey_light
-      border-top-left-radius: 6px
-      border-top-right-radius: 6px
-      text-shadow: 0 1px 1px $red
-
-    & + *
-      -webkit-margin-collapse: separate
-      margin-top: 32px
-
-  .field
-    padding: 10px 20px
-    border-bottom: 1px solid $grey
-    border-top: 1px solid $grey_lighter
-
-    *
-      +box-sizing(border-box)
-
-    &:last-child
-      border-bottom-left-radius: 6px
-      border-bottom-right-radius: 6px
-
-    label
-      width: 200px
-      text-align: right
-
-    label, .controls, .inline-error
-      display: inline-block
-      vertical-align: top
-
-    label, .inline-error
-      padding: 10px
-
-    .inline-error
-      color: $grey_light
-      background: $red
-      vertical-align: top
-      border-radius: 3px
-      position: relative
-      margin-left: 16px
-
-      &:before
-        content: ''
-        display: block
-        width: 0px
-        height: 0px
-        position: absolute
-        top: 50%
-        right: 100%
-        border: 8px solid transparent
-        border-right-color: $red
-        margin-top: -8px
-
-    .controls
-      div
-        margin: 0
-
-        & + div
-          margin-top: 8px
-
-    &.boolean .check
-      margin-left: 204px
-
-    .row
-      width: 350px
-
-    .input
-      width: 350px
-      min-height: 32px
-      margin: 0
-
-
-      &[type=checkbox], &[type=radio]
-        display: none
-
-      &[type=radio]
-        & + label
-          text-align: left
-          width: auto
-          cursor: pointer
-          position: relative
-          padding-right: 0
-          padding-left: 48px
-
-          &:before
-            content: ''
-            display: block
-            border-radius: 18px
-            position: absolute
-            top: 0
-            left: 0
-            border: 1px solid $grey
-            background: $grey_lighter
-            height: 32px
-            width: 32px
-            transition: border-width 0.3s, border-color 0.1s
-            +box-sizing(border-box)
-
-        &:checked + label
-          &:before
-            border-width: 16px
-            border-color: lighten($red, 30%)
-
-      &[type=checkbox]
-        & + .check
-          width: 48px
-          position: relative
-          display: inline-block
-          vertical-align: top
-
-          &:before, &:after
-            +box-sizing(border-box)
-            content: ''
-            display: block
-            height: 32px
-            position: absolute
-            left: 0
-
-          &:before
-            top: 0
-            border: 1px solid $grey
-            border-radius: 18px
-            background: $grey_lighter
-            width: 48px
-            transition: border-width 0.3s, border-color 0.1s ease 0.3s
-
-          &:after
-            top: 1px
-            background: $grey_lighter
-            border-radius: 50%
-            height: 30px
-            left: 1px
-            right: 17px
-            box-shadow: 0 2px 7px -2px transparentize($grey_very_dark, 0.6), 1px 2px 1px transparentize($grey_very_dark, 0.8)
-            transition: left 0.2s ease-in, right 0.2s ease-out
-
-          & + label
-            padding-left: 64px
-            margin-left: -54px
-            padding-right: 0px
-            z-index: 1
-            position: relative
-            text-align: left
-            width: auto
-            cursor: pointer
-
-        &:checked + .check
-          &:after
-            left: 17px
-            right: 1px
-
-          &:before
-            transition: border-width 0.3s, border-color 0.1s
-            border-width: 16px
-            border-color: lighten($red, 30%)
-
-.input
-  border: none//1px solid $input_border
-  border-top: 3px solid $input_border
-  border-radius: $input_radius
-  background: $input_color
-  padding: $input_padding
-  box-shadow: inset 0 1px 3px -1px $grey_very_dark
-
-.has-errors
   .input
-    box-shadow: inset 0 1px 3px -1px $red
-
-  [type=checkbox] + .check, [type=radio] + label
-    &:before
-      box-shadow: 0 0 4px -2px $red
+    width: 350px
+    min-height: 32px
+    margin: 0
 
 
-.actions
-  padding: 10px 20px
-  text-align: right
-
-.action
-  border: none
-  background: $button_color
-  border-bottom: 3px solid $button_border
-  border-radius: $button_radius
-  padding: $button_padding
-  box-shadow: 0 1px 3px -1px $grey_very_dark

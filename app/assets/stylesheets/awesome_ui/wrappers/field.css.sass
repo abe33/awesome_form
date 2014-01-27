@@ -1,0 +1,50 @@
+
+.field
+  padding: 10px 20px
+  border-bottom: 1px solid $grey
+  border-top: 1px solid $grey_lighter
+
+  *
+    +box-sizing(border-box)
+
+  &:last-child
+    border-bottom-left-radius: 6px
+    border-bottom-right-radius: 6px
+
+  label
+    width: 200px
+    text-align: right
+
+  label, .controls, .inline-error
+    display: inline-block
+    vertical-align: top
+
+  label, .inline-error
+    padding: 10px
+
+  .inline-error
+    color: $grey_light
+    background: $red
+    vertical-align: top
+    border-radius: 3px
+    position: relative
+    margin-left: 16px
+
+    &:before
+      content: ''
+      display: block
+      width: 0px
+      height: 0px
+      position: absolute
+      top: 50%
+      right: 100%
+      border: 8px solid transparent
+      border-right-color: $red
+      margin-top: -8px
+
+  .controls
+    div
+      margin: 0
+
+      & + div
+        margin-top: 8px
