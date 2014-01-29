@@ -1,35 +1,61 @@
-.input[type=radio]
-  display: none
 
-  & + label
+.radios
+  .input
+    display: none
+
+  .input + label
     text-align: left
     width: auto
     cursor: pointer
     position: relative
     padding-right: 0
     padding-left: 48px
+    z-index: 1
 
     &:before
       content: ''
+      width: 28px
+      height: 28px
       display: block
-      border-radius: 18px
       position: absolute
-      top: 0
-      left: 0
-      border: 1px solid $grey
-      background: $grey_lighter
-      height: 32px
-      width: 32px
-      transition: border-width 0.3s, border-color 0.1s
+      border-radius: 20px
+      border: 0px solid $grey
       +box-sizing(border-box)
+      top: 3px
+      left: 2px
+      transition: border-width 0.4s
 
-  &:checked + label
-    &:before
-      border-width: 16px
-      border-color: lighten($red, 30%)
+    &:hover:before
+      border: 14px solid $grey
+      transition: border-width 0.2s
 
-.has-errors
-  [type=radio] + label
-    &:before
-      box-shadow: 0 0 4px -2px $red
+  .radios-track
+    @extend %inset-box
+    width: 32px
+    position: absolute
+    border-radius: 18px
+    overflow: hidden
+    top: 0
+    left: 0
+    margin-top: -3px
+    +box-sizing(content-box)
+
+  .radios-marker
+    // width: 28px
+    // height: 28px
+    margin-top: 2px
+    left: 2px
+    right: 2px
+    background: transparent
+    position: absolute
+    border-radius: 50%
+    transition: border-width 0.2s
+    z-index: 10
+    +box-sizing(border-box)
+    pointer-events: none
+
+    &.visible
+      background: lighten($red, 30%)
+
+  &.has-errors
 

@@ -10,8 +10,11 @@
     end
   end
 
-= stylesheet_link_tag AwesomeForm.theme, media: "all"
-= javascript_include_tag AwesomeForm.theme
+- content_for :styles do
+  = stylesheet_link_tag AwesomeForm.theme, media: "all"
+
+- content_for :scripts do
+  = javascript_include_tag AwesomeForm.theme
 
 = link_to 'with errors', styles_path(with_errors: 1)
 = link_to 'without errors', styles_path

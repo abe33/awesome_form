@@ -1,10 +1,8 @@
 .input
-  border: none//1px solid $input_border
-  border-top: 3px solid $input_border
-  border-radius: $input_radius
-  background: $input_color
   padding: $input_padding
-  box-shadow: inset 0 1px 3px -1px $grey_very_dark
+  border-radius: $input_radius
+
+  @extend %inset-box
 
 .has-errors
   .input

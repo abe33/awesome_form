@@ -30,3 +30,19 @@
 =gecko-only()
   @-moz-document url-prefix()
     @content
+
+=keyframe($name)
+  @keyframe #{$name}
+    @content
+
+  @-webkit-keyframe #{$name}
+    @content
+
+  @-moz-keyframe #{$name}
+    @content
+
+  @-o-keyframe #{$name}
+    @content
+
+  @-ms-keyframe #{$name}
+    @content
