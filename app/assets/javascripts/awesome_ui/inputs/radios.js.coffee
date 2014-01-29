@@ -105,8 +105,8 @@ class RadioGroup
 
   place_marker: (marker, y) ->
     row = @rows[y]
-    top = @element_top row
-    bottom = @element_bottom row
+    top = @marker_top row
+    bottom = @marker_bottom row
     marker.style.top = "#{top}px"
     marker.style.bottom = "#{bottom}px"
 
@@ -159,11 +159,11 @@ class RadioGroup
     }
 
   slide_bottom: (marker, from, to) ->
-    y_start_top = @element_top @rows[from]
-    y_start_bottom = @element_bottom @rows[from]
+    y_start_top = @marker_top @rows[from]
+    y_start_bottom = @marker_bottom @rows[from]
 
-    y_end_top = @element_top @rows[to]
-    y_end_bottom = @element_bottom @rows[to]
+    y_end_top = @marker_top @rows[to]
+    y_end_bottom = @marker_bottom @rows[to]
 
     widgets.animate marker, {
       top: {from: y_start_top, to: y_end_top},
@@ -177,11 +177,11 @@ class RadioGroup
     }
 
   slide_top: (marker, from, to) ->
-    y_start_top = @element_top @rows[from]
-    y_start_bottom = @element_bottom @rows[from]
+    y_start_top = @marker_top @rows[from]
+    y_start_bottom = @marker_bottom @rows[from]
 
-    y_end_top = @element_top @rows[to]
-    y_end_bottom = @element_bottom @rows[to]
+    y_end_top = @marker_top @rows[to]
+    y_end_bottom = @marker_bottom @rows[to]
 
     widgets.animate marker, {
       top: {from: y_start_top, to: y_end_top},
@@ -194,11 +194,11 @@ class RadioGroup
       easing: TOP_SLIDE_EASING
     }
 
-  element_top: (element) ->
+  marker_top: (element) ->
     element.offsetTop - element.parentNode.offsetTop
 
-  element_bottom: (element) ->
-    @track_height - (@element_top(element) + element.offsetHeight) + 2
+  marker_bottom: (element) ->
+    @track_height - (@marker_top(element) + element.offsetHeight) + 2
 
 
 
