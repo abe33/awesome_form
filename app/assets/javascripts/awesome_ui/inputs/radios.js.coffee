@@ -8,9 +8,9 @@ class RadioGroup
   BOTTOM_SLIDE_EASING = widgets.key_spline(0.890, -0.060, 0.660, 1.610)
   TOP_SLIDE_EASING = widgets.key_spline(0.660, -0.2, 0.590, 1.045)
 
-  EXIT_DURATION = 300
-  ENTER_DURATION = 400
-  SLIDE_DURATION = 400
+  EXIT_DURATION = 200
+  ENTER_DURATION = 300
+  SLIDE_DURATION = 300
 
   constructor: (@element, @options) ->
 
