@@ -22,7 +22,7 @@ module AwesomeForm
             text << keys.map { |f| #{name} f, options }.join("\n").html_safe
             text << @template.capture(self, &block) if block_given?
 
-            render text: text, layout: lookup_views(paths), locals: options
+            render text: text, layout: lookup_views(paths), locals: options.merge(default_locals)
           end
 
           def #{name}(key, options={}, &block)
@@ -34,6 +34,16 @@ module AwesomeForm
               locals: opts,
             }
             render render_options
+          end
+
+          def default_locals
+            {
+              object_name: object_name,
+              object: object,
+              model_name: model_name,
+              resource_name: resource_name,
+              builder: self,
+            }
           end
 
         RUBY

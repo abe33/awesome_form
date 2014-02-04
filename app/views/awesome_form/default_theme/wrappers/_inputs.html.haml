@@ -1,12 +1,7 @@
 :ruby
   inputs_html ||= {}
 
-  fieldset_attrs = {
-    class: [
-      AwesomeForm.default_inputs_class,
-      inputs_html.delete(:class),
-    ].compact.join(' '),
-  }.merge(inputs_html)
+  fieldset_attrs = builder.attributes_for(:fieldset, inputs_html, class: AwesomeForm.default_inputs_class)
 
 %fieldset{fieldset_attrs}
   - if defined? legend

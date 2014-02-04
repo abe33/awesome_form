@@ -33,11 +33,24 @@ module AwesomeForm
     end
 
     def filter_attributes_for(html, options)
+      legal_attributes = AwesomeForm.legal_attributes[:global]
+      legal_attributes += AwesomeForm.legal_attributes[html] if AwesomeForm.legal_attributes[html].present?
+
       options.select do |k|
-        AwesomeForm.legal_attributes[:global].include?(k) ||
-        AwesomeForm.legal_attributes[html].include?(k) ||
-        k.to_s =~ /^data($|-)/
+        legal_attributes.include?(k) || k.to_s =~ /^data($|-)/
       end
+    end
+
+    def attributes_for(html, attrs, defaults={})
+      defaults.each_pair do |k,v|
+        if AwesomeForm.mergeable_attributes.include?(k)
+          attrs[k] = [v, attrs[k]].flatten.compact.join(' ')
+        else
+          attrs[k] ||= v
+        end
+      end
+
+      filter_attributes_for html, attrs
     end
 
     def model_name

@@ -16,11 +16,6 @@ module AwesomeForm
       def options_for_action(action, options)
         action_options = {
           action: action.to_sym,
-          object_name: object_name,
-          object: object,
-          model_name: model_name,
-          resource_name: resource_name,
-          builder: self,
         }
 
         case action.to_sym
@@ -29,7 +24,9 @@ module AwesomeForm
         when :reset then action_options[:name] = :reset
         end
 
-        action_options.merge(options)
+        action_options
+        .merge(default_locals)
+        .merge(options)
       end
 
       def partial_for_action(action_options)

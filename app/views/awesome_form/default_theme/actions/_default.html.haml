@@ -1,12 +1,14 @@
 :ruby
-  attrs = {
+  action_html ||= {}
+
+  attrs = builder.attributes_for :button, action_html, {
     type: action,
     name: name,
     class: [
       AwesomeForm.default_action_class,
       model_name,
       action
-    ].join(' '),
+    ],
   }
 
 %button{attrs}= builder.action_label(action)

@@ -6,22 +6,16 @@
   .row
     - slice.each do |value, label|
       :ruby
-        input_class = [
-          AwesomeForm.default_input_class,
-          input_html.delete(:class)
-        ].join(' ')
-
-
         id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
-        attrs = {
+
+        attrs = builder.attributes_for :input, input_html, {
           name: builder.collection_name(attribute_name),
           id: id,
           type: :checkbox,
-          class: input_class,
+          class: AwesomeForm.default_input_class,
           value: value,
           checked: selected.include?(value),
         }
-        attrs.merge! builder.filter_attributes_for(:input, input_html)
 
       .column{ class: "column-#{columns}" }
         %input{attrs}

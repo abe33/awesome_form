@@ -18,12 +18,8 @@ module AwesomeForm
 
         {
           attribute_name: attribute,
-          object_name: object_name,
-          object: object,
-          model_name: model_name,
-          resource_name: resource_name,
-          builder: self,
         }
+        .merge(default_locals)
         .merge(type_options)
         .merge(options)
         .reverse_merge({
