@@ -48,9 +48,11 @@ module AwesomeForm
 
   mattr_accessor :legal_attributes
   @@legal_attributes = {
+    global: %w(accesskey class contenteditable contextmenu dir draggable dropzone hidden id inert itemid itemprop itemref itemscope itemtype lang spellcheck style tabindex title translate).map(&:to_sym),
     input: %w(accept alt autocomplete autofocus checked dirname disabled form formaction formenctype formmethod formnovalidate formtarget height list max maxlength min multiple name pattern placeholder readonly required size src step type value width).map(&:to_sym),
     textarea: %w(autocomplete autofocus cols dirname disabled form maxlength name placeholder readonly required rows wrap).map(&:to_sym),
-    select: %w(autofocus disabled form multiple name required size).map(&:to_sym)
+    select: %w(autofocus disabled form multiple name required size).map(&:to_sym),
+    label: %w(form for).map(&:to_sym),
   }
 
   def self.setup
