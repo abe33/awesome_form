@@ -60,11 +60,11 @@ module AwesomeForm
   @@theme = :default_theme
 
   def self.theme=(theme)
-    theme = theme.to_sym
-    if theme == :default_theme
+    @@theme = theme.to_sym
+    if @@theme == :default_theme
       self.load_configuration default_options
     else
-      self.load_configuration theme_configurations[theme] || self.config_struct.new
+      self.load_configuration theme_configurations[@@theme] || self.config_struct.new
     end
   end
 

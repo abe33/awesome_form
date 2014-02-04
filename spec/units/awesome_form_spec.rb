@@ -30,6 +30,10 @@ describe AwesomeForm do
         end
       end
 
+      it 'should have changed the theme' do
+        AwesomeForm.theme.should eq :some_theme
+      end
+
       it 'should apply the config' do
         AwesomeForm.default_input_class.should eq 'foo'
         AwesomeForm.default_actions.should eq %i(submit cancel)
