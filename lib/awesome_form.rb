@@ -43,7 +43,13 @@ module AwesomeForm
   mattr_accessor :default_input_wrapper_error_class
   @@default_input_wrapper_error_class = 'has-errors'
 
-    mattr_accessor :default_error_class
+  mattr_accessor :default_row_class
+  @@default_row_class = 'row'
+
+  mattr_accessor :default_column_class
+  @@default_column_class = 'column'
+
+  mattr_accessor :default_error_class
   @@default_error_class = 'inline-error'
 
   mattr_accessor :legal_attributes

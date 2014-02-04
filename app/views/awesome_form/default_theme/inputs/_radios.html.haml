@@ -3,7 +3,7 @@
   columns ||= 1
 
 - collection.each_slice(columns) do |slice|
-  .row
+  %div{ class: AwesomeForm.default_row_class }
     - slice.each do |value, label|
       :ruby
         id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
@@ -17,6 +17,6 @@
           checked: selected.include?(value),
         }
 
-      .column{ class: "column-#{columns}" }
+      %div{ class: "#{AwesomeForm.default_column_class} column-#{columns}" }
         %input{attrs}
         %label{for: id}= label || value.to_s.humanize
