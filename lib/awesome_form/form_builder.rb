@@ -61,6 +61,10 @@ module AwesomeForm
       model_name.pluralize
     end
 
+    def column_class_for(*args)
+      AwesomeForm.column_class_processor.call(*args)
+    end
+
   protected
 
     def filter_arguments(*args)

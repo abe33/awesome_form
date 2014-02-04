@@ -49,6 +49,9 @@ module AwesomeForm
   mattr_accessor :default_column_class
   @@default_column_class = 'column'
 
+  mattr_accessor :column_class_processor
+  @@column_class_processor = Proc.new {|columns| "column-#{columns}" }
+
   mattr_accessor :default_error_class
   @@default_error_class = 'inline-error'
 
@@ -68,5 +71,6 @@ module AwesomeForm
   def self.setup
     yield self
   end
+
 end
 
