@@ -1,13 +1,9 @@
 :ruby
-  input_class = [
-    AwesomeForm.default_input_class,
-    input_html.delete(:class)
-  ].join(' ')
 
-  attrs = {
+  attrs = builder.attributes_for :select, input_html, {
     name: builder.association_name(attribute_name),
     id: builder.input_id(attribute_name),
-    class: input_class,
+    class: AwesomeForm.default_input_class,
     multiple: multiple,
   }
 

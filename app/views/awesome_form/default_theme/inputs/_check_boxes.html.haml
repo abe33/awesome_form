@@ -1,28 +1,27 @@
 :ruby
   selected ||= []
   columns ||= 1
+  row = 0
 
 - collection.each_slice(columns) do |slice|
-  .row
+  %div{ class: AwesomeForm.default_row_class }
+    - column = 0
     - slice.each do |value, label|
       :ruby
-        input_class = [
-          AwesomeForm.default_input_class,
-          input_html.delete(:class)
-        ].join(' ')
-
-
         id = "#{builder.input_id(attribute_name)}_#{(label || value).to_s.underscore}"
-        attrs = {
+
+        attrs = builder.attributes_for :input, input_html, {
           name: builder.collection_name(attribute_name),
           id: id,
           type: :checkbox,
-          class: input_class,
+          class: AwesomeForm.default_input_class,
           value: value,
           checked: selected.include?(value),
         }
-        attrs.merge! builder.filter_attributes_for(:input, input_html)
 
-      .column{ class: "column-#{columns}" }
+      %div{ class: "#{AwesomeForm.default_column_class} #{builder.column_class_for columns, row, column}" }
         %input{attrs}
         %label{for: id}= label || value.to_s.humanize
+
+      - column += 1
+    - row += 1

@@ -1,16 +1,10 @@
 :ruby
-  input_class = [
-    AwesomeForm.default_input_class,
-    input_html.delete(:class)
-  ].join(' ')
-
-  attrs = {
+  attrs = builder.attributes_for :input, input_html, {
     name: builder.input_name(attribute_name),
     id: builder.input_id(attribute_name),
-    class: input_class,
+    class: AwesomeForm.default_input_class,
     type: type == :string ? :text : type,
     value: object.try(attribute_name),
   }
-  attrs.merge! builder.filter_attributes_for(:input, input_html)
 
 %input{attrs}
