@@ -42,6 +42,7 @@ module AwesomeForm
     end
 
     def attributes_for(html, attrs, defaults={})
+      attrs = attrs.dup
       defaults.each_pair do |k,v|
         if AwesomeForm.mergeable_attributes.include?(k)
           attrs[k] = [v, attrs[k]].flatten.compact.join(' ')
