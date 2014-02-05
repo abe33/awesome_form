@@ -8,3 +8,5 @@ widgets.define 'output', (element, options={}) ->
     element.textContent = target.value
 
   element.textContent = target.value
+
+  null
