@@ -23,3 +23,7 @@ class widgets.Hash
     @values.splice(index, 1)
 
   each: (block) -> @values.forEach block
+
+  each_key: (block) -> @keys.forEach block
+
+  each_pair: (block) -> @keys.forEach (key) => block? key, @get(key)
