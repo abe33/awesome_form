@@ -4,10 +4,12 @@
 # The `widgets` function is both the main module and the function
 # used to register the widgets to apply on a page.
 widgets = (name, selector, options={}, block) ->
+  unless widgets[name]?
+    throw new Error "Unable to find widget '#{name}'"
 
   # The options specific to the widget registration and activation are
   # extracted from the options object.
-  events = options.on
+  events = options.on or 'init'
   if_condition = options.if
   unless_condition = options.unless
   media_condition = options.media
@@ -83,7 +85,7 @@ widgets = (name, selector, options={}, block) ->
     Array::forEach.call elements, (element) ->
       return unless can_be_handled element
 
-      res = widgets[name] element, Object.create(options)
+      res = widgets[name] element, Object.create(options), elements
       element.className += " #{handled_class}"
       instances.set element, res
       block?.call element, element, res
