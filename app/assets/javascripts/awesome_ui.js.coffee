@@ -1,4 +1,5 @@
 #= require awesome_ui/widgets
+#= require awesome_ui/tags
 #= require awesome_ui/hash
 #= require awesome_ui/animations
 #= require_tree ./awesome_ui/inputs
