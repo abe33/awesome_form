@@ -49,7 +49,11 @@ module AwesomeForm
   @@default_column_class = 'column'
 
   mattr_accessor :column_class_processor
-  @@column_class_processor = Proc.new {|columns| "column-#{columns}" }
+  @@column_class_processor = Proc.new do |columns|
+    cols = 12 / columns
+
+    "column-md-#{cols.ceil}"
+  end
 
   mattr_accessor :default_error_class
   @@default_error_class = 'inline-error'

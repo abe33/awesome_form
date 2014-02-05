@@ -11,6 +11,7 @@
     padding-right: 0
     padding-left: 48px
     z-index: 1
+    width: 100%
 
     &:before
       content: ''
@@ -24,6 +25,7 @@
       top: 3px
       left: 2px
       transition: border-width 0.4s
+      box-shadow: inset 0 5px 10px -5px $grey_light
 
     &:hover:before
       border: 14px solid $grey
@@ -33,29 +35,51 @@
     @extend %inset-box
     width: 32px
     position: absolute
-    border-radius: 18px
+    border-radius: 16px
     overflow: hidden
     top: 0
     left: 0
     margin-top: -3px
+    padding-bottom: 2px
     +box-sizing(content-box)
 
   .radios-marker
-    // width: 28px
-    // height: 28px
     margin-top: 2px
-    left: 2px
-    right: 2px
     background: transparent
-    position: absolute
+    right: 2px
     border-radius: 50%
-    transition: border-width 0.2s
     z-index: 10
-    +box-sizing(border-box)
     pointer-events: none
+    +box-sizing(border-box)
+    +absolute(0,2px)
 
     &.visible
       background: lighten($red, 30%)
 
+  &.binary
+    .column
+      padding: 0 4px
+      .radios-track
+        left: 4px
+
+      &:first-child
+        .radios-track
+          right: 4px
+          +absolute(0, auto)
+
+        label
+          padding-right: 48px
+          padding-left: 0
+          text-align: right
+
+          &:before
+            right: 2px
+            left: initial
+
+      label
+        width: 100%
+
   &.has-errors
+    .radios-track
+      box-shadow: inset 0 1px 3px -1px $red
 

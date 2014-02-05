@@ -2,7 +2,7 @@
   AwesomeForm.theme = params[:theme] if params[:theme].present?
 
   m = User.new
-  a = %w(text string number range datetime boolean file select select_multiple check_boxes radios)
+  a = %w(text string number range range_float datetime boolean file select select_multiple check_boxes radios binary_radios)
 
   if params[:with_errors].present?
     a.each do |k|
@@ -26,12 +26,14 @@
     = form.input :string, as: :string, input_html: { value: 'bar' }
     = form.input :number, as: :number, input_html: { min: 1, max: 10, step: 1, value: 5 }
     = form.input :range, as: :range, input_html: { min: 1, max: 10, step: 1, value: 5}
+    = form.input :range_float, as: :range, input_html: { min: 1, max: 10, step: 0.1, value: 5}
     = form.input :datetime, as: :datetime, input_html: { min: 1.day.ago, max: 1.day.from_now, value: Time.now }
-    = form.input :boolean, as: :boolean, input_html: { value: 1 }
     = form.input :file, as: :file
     = form.input :select, as: :select, collection: %w(a b c d e f g h i j k l)
     = form.input :select_multiple, as: :select, collection: %w(a b c d e f g h i j k l), multiple: true
+    = form.input :boolean, as: :boolean, input_html: { value: 1 }
     = form.input :check_boxes, as: :check_boxes, collection: %w(a b c d e f g h i j k l), columns: 3
     = form.input :radios, as: :radios, collection: %w(a b c d e f g h i j k l), columns: 3
+    = form.input :binary_radios, as: :radios, collection: %w(a b), columns: 2, wrapper_html: { class: 'binary' }
 
   = form.actions :reset, :cancel, :submit

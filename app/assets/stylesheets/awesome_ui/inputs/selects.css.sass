@@ -1,0 +1,21 @@
+.single_select-handled
+  display: none
+
+.select-value
+  height: 32px
+  // width: 350px
+  border-radius: 6px
+  padding: 10px 8px
+  cursor: pointer
+  @extend %outset-box
+  @extend %text-default
+
+  .placeholder
+    color: $grey_dark
+
+.select-drop
+  display: none
+
+.has-errors
+  .select-value
+    box-shadow: 0 1px 3px -1px $red

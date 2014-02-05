@@ -6,3 +6,5 @@
 WIDGETS_EVENTS = 'load'
 
 widgets 'radios', '.radios', on: WIDGETS_EVENTS
+widgets 'single_select', 'select:not([multiple])', on: WIDGETS_EVENTS
+widgets 'output', 'output', on: WIDGETS_EVENTS

@@ -10,6 +10,18 @@ $cyan: #1FBAE0
 $blue: #1F59E0
 $violet: #A61FE0
 
+$break-sm: 480px
+$break-md: 768px
+$break-lg: 1020px
+$break-xl: 1220px
+$break-xxl: 1220px
+
+$break-sm-1: $break-sm - 1
+$break-md-1: $break-md - 1
+$break-lg-1: $break-lg - 1
+$break-xl-1: $break-xl - 1
+$break-xxl-1: $break-xxl - 1
+
 $grey: $base
 $grey_light: lighten($base, 6%)
 $grey_lighter: lighten($base, 9%)
@@ -20,14 +32,17 @@ $grey_extra_dark: darken($base, 60%)
 $grey_extra_darker: desaturate(darken($base, 70%), 20%)
 $grey_extra_darker_2: desaturate(darken($red, 20%), 50%)
 
+$inset_bevel_size: 2px
+
 $button_radius: 6px
 $button_padding: 6px 8px
 $button_color: $grey_light
 $button_border: $grey
 
 $input_radius: 6px
-$input_padding: 8px 12px 6px
+$input_padding: (5px + $inset_bevel_size) 12px 6px
 $input_color: $grey_lighter
 $input_border: $grey
 
 $base-font-size: 16px
+

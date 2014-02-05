@@ -1,16 +1,20 @@
 
 class RadioGroup
-  LEFT_ENTER_EASING = widgets.key_spline(0.385, 0.005, 0.6, 1.275)
-  LEFT_EXIT_EASING = widgets.key_spline(0.55, -1, 0.75, 1.0)
-  RIGHT_ENTER_EASING = widgets.key_spline(0.385, 0.005, 0.6, 1.275)
-  RIGHT_EXIT_EASING = widgets.key_spline(0.55, -1, 0.65, 1.0)
+  @LEFT_ENTER_EASING: widgets.key_spline(0.385, 0.005, 0.6, 1.275)
+  @LEFT_EXIT_EASING: widgets.key_spline(0.55, -1, 0.75, 1.0)
 
-  BOTTOM_SLIDE_EASING = widgets.key_spline(0.890, -0.060, 0.660, 1.610)
-  TOP_SLIDE_EASING = widgets.key_spline(0.660, -0.2, 0.590, 1.045)
+  @RIGHT_ENTER_EASING: widgets.key_spline(0.385, 0.005, 0.6, 1.275)
+  @RIGHT_EXIT_EASING: widgets.key_spline(0.55, -1, 0.65, 1.0)
 
-  EXIT_DURATION = 200
-  ENTER_DURATION = 300
-  SLIDE_DURATION = 300
+  @TOP_OFFSET: 11
+  @TOP_SLIDE_EASING: widgets.key_spline(0.660, -0.2, 0.590, 1.045)
+
+  @BOTTOM_OFFSET: 4
+  @BOTTOM_SLIDE_EASING: widgets.key_spline(0.890, -0.060, 0.660, 1.610)
+
+  @EXIT_DURATION = 200
+  @ENTER_DURATION = 300
+  @SLIDE_DURATION = 300
 
   constructor: (@element, @options) ->
 
@@ -28,12 +32,9 @@ class RadioGroup
     columns_count = columns.length
 
     for i in [0..columns_count-1]
-      track = document.createElement 'div'
-      track.className = 'radios-track'
-      track.style.height = "#{@track_height}px"
+      track = widgets.tag 'div', class: 'radios-track', style: "height: #{@track_height}px"
 
-      marker = document.createElement 'div'
-      marker.className = 'radios-marker'
+      marker = widgets.tag 'div', class: 'radios-marker'
       track.appendChild marker
 
       @markers.push marker
@@ -77,6 +78,7 @@ class RadioGroup
           else if coordinates.y < @current_coordinates.y
             @slide_top(marker, @current_coordinates.y, coordinates.y)
         else
+          @enter_left(marker)
           @place_marker(marker, coordinates.y)
 
         @show_marker(marker)
@@ -88,6 +90,7 @@ class RadioGroup
       @show_marker marker
       @current_coordinates = coordinates
 
+      @enter_left(marker)
       @place_marker marker, coordinates.y
 
   show_marker: (marker) ->
@@ -113,49 +116,49 @@ class RadioGroup
   exit_right: (marker) ->
     widgets.animate marker, {
       left: {from: 2, to: 36},
-      during: EXIT_DURATION,
-      easing: LEFT_EXIT_EASING
+      during: RadioGroup.EXIT_DURATION,
+      easing: RadioGroup.LEFT_EXIT_EASING
     }
     widgets.animate marker, {
       right: {from: 2, to: -36},
-      during: EXIT_DURATION,
-      easing: RIGHT_EXIT_EASING
+      during: RadioGroup.EXIT_DURATION,
+      easing: RadioGroup.RIGHT_EXIT_EASING
     }
 
   exit_left: (marker) ->
     widgets.animate marker, {
       left: {from: 2, to: -36},
-      during: EXIT_DURATION,
-      easing: RIGHT_EXIT_EASING
+      during: RadioGroup.EXIT_DURATION,
+      easing: RadioGroup.RIGHT_EXIT_EASING
     }
     widgets.animate marker, {
       right: {from: 2, to: 36},
-      during: EXIT_DURATION,
-      easing: LEFT_EXIT_EASING
+      during: RadioGroup.EXIT_DURATION,
+      easing: RadioGroup.LEFT_EXIT_EASING
     }
 
   enter_left: (marker) ->
     widgets.animate marker, {
       left: {from: -36, to: 2},
-      during: ENTER_DURATION,
-      easing: LEFT_ENTER_EASING
+      during: RadioGroup.ENTER_DURATION,
+      easing: RadioGroup.LEFT_ENTER_EASING
     }
     widgets.animate marker, {
       right: {from: 36, to: 2},
-      during: ENTER_DURATION,
-      easing: RIGHT_ENTER_EASING
+      during: RadioGroup.ENTER_DURATION,
+      easing: RadioGroup.RIGHT_ENTER_EASING
     }
 
   enter_right: (marker) ->
     widgets.animate marker, {
       left: {from: 36, to: 2},
-      during: ENTER_DURATION,
-      easing: RIGHT_ENTER_EASING
+      during: RadioGroup.ENTER_DURATION,
+      easing: RadioGroup.RIGHT_ENTER_EASING
     }
     widgets.animate marker, {
       right: {from: -36, to: 2},
-      during: ENTER_DURATION,
-      easing: LEFT_ENTER_EASING
+      during: RadioGroup.ENTER_DURATION,
+      easing: RadioGroup.LEFT_ENTER_EASING
     }
 
   slide_bottom: (marker, from, to) ->
@@ -167,13 +170,13 @@ class RadioGroup
 
     widgets.animate marker, {
       top: {from: y_start_top, to: y_end_top},
-      during: SLIDE_DURATION,
-      easing: TOP_SLIDE_EASING
+      during: RadioGroup.SLIDE_DURATION,
+      easing: RadioGroup.TOP_SLIDE_EASING
     }
     widgets.animate marker, {
       bottom: {from: y_start_bottom, to: y_end_bottom},
-      during: SLIDE_DURATION,
-      easing: BOTTOM_SLIDE_EASING
+      during: RadioGroup.SLIDE_DURATION,
+      easing: RadioGroup.BOTTOM_SLIDE_EASING
     }
 
   slide_top: (marker, from, to) ->
@@ -185,22 +188,20 @@ class RadioGroup
 
     widgets.animate marker, {
       top: {from: y_start_top, to: y_end_top},
-      during: SLIDE_DURATION,
-      easing: BOTTOM_SLIDE_EASING
+      during: RadioGroup.SLIDE_DURATION,
+      easing: RadioGroup.BOTTOM_SLIDE_EASING
     }
     widgets.animate marker, {
       bottom: {from: y_start_bottom, to: y_end_bottom},
-      during: SLIDE_DURATION,
-      easing: TOP_SLIDE_EASING
+      during: RadioGroup.SLIDE_DURATION,
+      easing: RadioGroup.TOP_SLIDE_EASING
     }
 
   marker_top: (element) ->
-    element.offsetTop - element.parentNode.offsetTop
+    RadioGroup.TOP_OFFSET + element.offsetTop - element.parentNode.offsetTop
 
   marker_bottom: (element) ->
-    @track_height - (@marker_top(element) + element.offsetHeight) + 2
-
-
+    @track_height - (@marker_top(element) + element.offsetHeight) + RadioGroup.BOTTOM_OFFSET
 
 widgets.define 'radios', (element, options) ->
   new RadioGroup(element, options).init()

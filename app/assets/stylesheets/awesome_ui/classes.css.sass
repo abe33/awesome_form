@@ -7,6 +7,11 @@
 
 %inset-box
   border: none
-  border-top: 3px solid $input_border
+  border-top: $inset_bevel_size solid $input_border
   background: $input_color
-  box-shadow: inset 0 1px 3px -1px $grey_very_dark
+  box-shadow: inset 0 1px $inset_bevel_size -1px $grey_very_dark
+
+%outset-box
+  border: none
+  background-image: linear-gradient(to bottom, $grey_lighter 50%, lighten($grey_light, 2%) 100%)
+  box-shadow: 0 1px $inset_bevel_size -1px $grey_dark

@@ -1,0 +1,52 @@
+.range
+  .controls
+    border-radius: 18px
+    // width: 350px
+    overflow: hidden
+    height: 32px
+
+    +relative
+
+    +before
+      border-radius: 26px
+      overflow: hidden
+      height: 32px
+
+      @extend %inset-box
+
+      +box-sizing(border-box)
+      +absolute
+      +box(100%, 32px)
+
+  output
+    @extend %text-default
+    padding: 6px 8px
+
+  input.input
+    background: transparent
+    border: none
+    box-shadow: none
+    padding: 0
+    z-index: 1
+    +relative
+
+    +range-track
+      background: transparent
+      border: none
+
+      +box(100%, 32px)
+
+    +range-thumb
+      border: 1px solid $grey
+      background: $grey_lighter
+      border-radius: 50%
+      box-shadow: 0 32px 10px $grey_very_dark, 0 $inset_bevel_size 0 $grey, 0 $inset_bevel_size 3px $grey_very_dark
+      +box(32px, 32px)
+      +box-sizing(border-box)
+
+      +webkit-only
+        margin-top: 0px
+
+  &.has-errors
+    .controls:before
+      box-shadow: inset 0 1px $inset_bevel_size -1px $red

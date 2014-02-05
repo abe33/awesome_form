@@ -1,15 +1,43 @@
 
+$size_names: xs sm md lg xl xxl
+$size_breakpoints: $break-sm $break-md $break-lg $break-xl $break-xxl
+
 .row
-  letter-spacing: -0.31em
   position: relative
+  +char-collapse
+  > *
+    +reset-char-collapse
 
-  .column
-    display: inline-block
-    position: relative
-    letter-spacing: normal
+.column
+  display: block
+  position: relative
+  letter-spacing: normal
 
-  @for $i from 1 through 10
-    $width: 100% / $i
-    .column-#{$i}
-      width: $width
+@for $i from 1 to 6
+  $size_name: nth($size_names, $i)
 
+  @if $i >= 2
+    $breakpoint: nth($size_breakpoints, $i - 1)
+    $media: "only screen and (min-width: #{$breakpoint})"
+
+    @media #{$media}
+      @for $j from 1 to 12
+        $width: 100% * ($j / 12)
+
+        .column-#{$size_name}-#{$j}
+          display: inline-block
+          width: $width
+
+        .offset-#{$size_name}-#{$j}
+          margin-left: $width
+
+  @else
+    @for $j from 1 to 12
+      $width: 100% * ($j / 12)
+
+      .column-#{$size_name}-#{$j}
+        display: inline-block
+        width: $width
+
+      .offset-#{$size_name}-#{$j}
+        margin-left: $width

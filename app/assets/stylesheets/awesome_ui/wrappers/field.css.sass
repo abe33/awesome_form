@@ -1,8 +1,10 @@
 
 .field
-  padding: 10px 20px
+  // padding: 10px 20px
+  padding: 10px 0px
   border-bottom: 1px solid $grey
   border-top: 1px solid $grey_lighter
+  @extend .row
 
   *
     +box-sizing(border-box)
@@ -12,12 +14,19 @@
     border-bottom-right-radius: 6px
 
   label
-    width: 200px
+    // width: 200px
     text-align: right
 
   label, .controls, .inline-error
     display: inline-block
     vertical-align: top
+    @extend .column
+
+  label
+    @extend .column-md-3
+
+  .controls
+    @extend .column-md-5
 
   label, .inline-error
     padding: 10px
@@ -29,6 +38,7 @@
     border-radius: 3px
     position: relative
     margin-left: 16px
+    +reset-char-collapse
 
     &:before
       content: ''
