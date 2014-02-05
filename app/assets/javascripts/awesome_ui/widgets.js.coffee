@@ -33,10 +33,6 @@ widgets = (name, selector, options={}, block) ->
   # to differenciate them from unhandled elements.
   handled_class = "#{name}-handled"
 
-  # Activated elements will receive a specific class to keep track of their
-  # activation state.
-  activated_class = "#{name}-activated"
-
   # This method will test if an element can be handled by the current widget.
   # It will test for both the handled class presence and the widget
   # conditions. Note that if both the `if` and `unless` conditions
