@@ -5,7 +5,7 @@
   -o-#{$property}: #{$value}
   #{$property}: #{$value}
 
-=box-sizing($mode)
+=box-sizing($mode: border-box)
   +vendor-prefix(box-sizing, $mode)
 
 =rem($property, $value)
@@ -95,7 +95,6 @@
   letter-spacing: normal
   white-space: normal
 
-
 =relative($top: 0, $left: 0)
   position: relative
   top: $top
@@ -160,4 +159,5 @@
     height: $height
     clear: both
     visibility: hidden
+
 
