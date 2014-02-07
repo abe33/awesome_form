@@ -1,10 +1,18 @@
 
+
+#
+__widgets__ = {}
+
+# The `__instances__` object stores the returned instances of the various widgets,
+# stored by widget type and then mapped with their target DOM element as key.
+__instances__ = {}
+
 ## widgets
 
 # The `widgets` function is both the main module and the function
 # used to register the widgets to apply on a page.
 widgets = (name, selector, options={}, block) ->
-  unless widgets[name]?
+  unless __widgets__[name]?
     throw new Error "Unable to find widget '#{name}'"
 
   # The options specific to the widget registration and activation are
@@ -24,7 +32,7 @@ widgets = (name, selector, options={}, block) ->
 
   # The widgets instances are stored in a Hash with the DOM element they
   # target as key. The instances hashes are stored per widget type.
-  instances = widgets.instances[name] ||= new widgets.Hash
+  instances = __instances__[name] ||= new widgets.Hash
 
   # This method execute a test condition for the given element. The condition
   # can be either a function or a value converted to boolean.
@@ -85,7 +93,7 @@ widgets = (name, selector, options={}, block) ->
     Array::forEach.call elements, (element) ->
       return unless can_be_handled element
 
-      res = widgets[name] element, Object.create(options), elements
+      res = __widgets__[name] element, Object.create(options), elements
       element.className += " #{handled_class}"
       instances.set element, res
       block?.call element, element, res
@@ -104,10 +112,6 @@ widgets = (name, selector, options={}, block) ->
       else
         document.addEventListener event, handler
 
-# The `instances` of the various widgets, stored by widget type and then
-# mapped with their target DOM element as key.
-widgets.instances = {}
-
 #### widgets.define
 
 # The `widgets.define` is used to create a new widget usable through the
@@ -121,7 +125,7 @@ widgets.instances = {}
 #
 # The `options` object will contains all the options passed to the `widgets`
 # method except the `on`, `if`, `unless` and `media` ones.
-widgets.define = (name, block) -> widgets[name] = block
+widgets.define = (name, block) -> __widgets__[name] = block
 
 #### widgets.release
 
@@ -130,18 +134,18 @@ widgets.define = (name, block) -> widgets[name] = block
 # It's the widget responsibility to clean up its dependencies during
 # the `dispose` call.
 widgets.release = (name) ->
-  widgets.instances[name].each (value) -> value?.dispose?()
+  __instances__[name].each (value) -> value?.dispose?()
 
 #### widgets.activate
 
 # Activates all the widgets instances of type `name`.
 widgets.activate = (name) ->
-  widgets.instances[name].each (value) -> value?.activate?()
+  __instances__[name].each (value) -> value?.activate?()
 
 #### widgets.deactivate
 
 # Deactivates all the widgets instances of type `name`.
 widgets.deactivate = (name) ->
-  widgets.instances[name].each (value) -> value?.deactivate?()
+  __instances__[name].each (value) -> value?.deactivate?()
 
 window.widgets = widgets
