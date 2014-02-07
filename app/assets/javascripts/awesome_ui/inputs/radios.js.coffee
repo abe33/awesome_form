@@ -1,5 +1,7 @@
 
 class RadioGroup
+  @include mixins.Activable
+
   @LEFT_ENTER_EASING: widgets.key_spline(0.385, 0.005, 0.6, 1.275)
   @LEFT_EXIT_EASING: widgets.key_spline(0.55, -1, 0.75, 1.0)
 
@@ -20,32 +22,55 @@ class RadioGroup
 
   init: ->
     @markers = []
+    @tracks = new widgets.Hash
 
-    @rows = @element.querySelectorAll '.row'
-    first_row = @rows[0]
-    columns = first_row.querySelectorAll('.column')
+    @update_rows()
+    @update_height()
 
-    @register_coordinates(@rows)
-    @track_height = first_row.parentNode.clientHeight
-
-    rows_count = @rows.length
-    columns_count = columns.length
-
-    for i in [0..columns_count-1]
+    for i in [0..@columns_count-1]
       track = widgets.tag 'div', class: 'radios-track', style: "height: #{@track_height}px"
 
       marker = widgets.tag 'div', class: 'radios-marker'
       track.appendChild marker
 
       @markers.push marker
+      @tracks.set track, @columns[i]
 
-      columns[i].appendChild track
+      @columns[i].appendChild track
 
     @init_marker()
 
     this
 
+  update_rows: ->
+    @rows = @element.querySelectorAll '.row'
+    @first_row = @rows[0]
+    @columns = @first_row.querySelectorAll('.column')
+    @rows_count = @rows.length
+    @columns_count = @columns.length
+
+    @register_coordinates(@rows)
+
+  update_height: ->
+    @track_height = @first_row.parentNode.clientHeight
+    @tracks.each_key (track) =>
+      track.setAttribute 'style', "height: #{@track_height}px"
+
   dispose: ->
+
+  on_activate: ->
+    @update_height()
+    @tracks.each_pair (track, column) ->
+      column.appendChild track
+
+    @with_selected (selected, coordinates, marker, old_marker) ->
+      @show_marker marker
+      @enter_left(marker)
+      @place_marker marker, coordinates.y
+
+  on_deactivate: ->
+    @tracks.each_pair (track, column) ->
+      column.removeChild track
 
   register_coordinates: (rows) ->
     @inputs_coordinates = inputs_coordinates = new widgets.Hash
