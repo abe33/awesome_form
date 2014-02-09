@@ -20,6 +20,11 @@ module AwesomeForm
       @template.render(render_options)
     end
 
+    def render_partial(partial, options={})
+      options[:partial] = partial_for partial
+      render options
+    end
+
     def view_exists?(view)
       path_elements = view.split('/')
       view = "_#{path_elements.pop}".squeeze '_'
@@ -76,6 +81,20 @@ module AwesomeForm
       options_args.each {|h| options.merge! h }
 
       [symbols, options]
+    end
+
+    def partial_for(partial)
+        lookup_views partial_paths_for(partial)
+    end
+
+    def partial_paths_for(partial)
+      theme = AwesomeForm.theme
+
+      [
+        "awesome_form/#{partial}",
+        "awesome_form/#{theme}/#{partial}",
+        "awesome_form/default_theme/#{partial}"
+      ].uniq
     end
 
   end

@@ -31,7 +31,7 @@ module AwesomeForm
             render_options = {
               partial: send("partial_for_#{name}", opts),
               layout: send("wrapper_for_#{name}", opts),
-              locals: opts,
+              locals: opts.merge(locals: opts),
             }
             render render_options
           end

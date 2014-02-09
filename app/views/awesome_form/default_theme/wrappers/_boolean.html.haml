@@ -22,5 +22,5 @@
     = builder.input_label(attribute_name)
 
   - if has_error
-    - object.errors.messages[attribute_name].each do |msg|
-      %span{ class: AwesomeForm.default_error_class }= msg
+    = builder.render_partial 'inputs/errors', locals: locals
+
