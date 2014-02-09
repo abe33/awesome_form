@@ -24,3 +24,6 @@
   - if has_error
     = builder.render_partial 'inputs/errors', locals: locals
 
+  - if defined?(hint) && hint.present?
+    = builder.render_partial 'wrappers/hints', locals: locals
+

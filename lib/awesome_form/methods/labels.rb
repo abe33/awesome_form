@@ -10,6 +10,10 @@ module AwesomeForm
         I18n.t("awesome_form.placeholders.#{resource_name}.#{attribute_name}", default: '')
       end
 
+      def input_hint(attribute_name)
+        I18n.t("awesome_form.hints.#{resource_name}.#{attribute_name}", default: '')
+      end
+
       def action_label(action)
         I18n.t("awesome_form.actions.#{resource_name}.#{action}", {
           default: I18n.t("awesome_form.actions.#{action}", {
