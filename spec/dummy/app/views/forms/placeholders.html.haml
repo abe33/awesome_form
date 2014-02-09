@@ -1,0 +1,6 @@
+= awesome_form_for User.new, url: '#' do |form|
+  = form.inputs do
+    = form.input :email
+    = form.input :password, input_html: { placeholder: 'bar' }
+
+  = form.actions

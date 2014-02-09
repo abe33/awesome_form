@@ -6,6 +6,10 @@ module AwesomeForm
         I18n.t("awesome_form.labels.#{resource_name}.#{attribute_name}", default: attribute_name.to_s.humanize)
       end
 
+      def input_placeholder(attribute_name)
+        I18n.t("awesome_form.placeholders.#{resource_name}.#{attribute_name}", default: '')
+      end
+
       def action_label(action)
         I18n.t("awesome_form.actions.#{resource_name}.#{action}", {
           default: I18n.t("awesome_form.actions.#{action}", {

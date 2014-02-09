@@ -16,7 +16,7 @@ module AwesomeForm
       def options_for_input(attribute, options)
         type_options = type_options_for_attribute attribute, options
 
-        {
+        input_options = {
           attribute_name: attribute,
         }
         .merge(default_locals)
@@ -25,6 +25,10 @@ module AwesomeForm
         .reverse_merge({
           input_html: {}
         })
+
+        input_options[:input_html][:placeholder] ||= input_placeholder(attribute)
+
+        input_options
       end
 
       def partial_for_input(input_options)
