@@ -11,7 +11,8 @@
     wrapper_error_class,
     model_name,
     attribute_name,
-    type
+    type,
+    required ? 'required' : nil,
   ])
 
   label_attrs = builder.attributes_for :label, label_html, for: builder.input_id(attribute_name), class: AwesomeForm.default_label_class
@@ -20,6 +21,8 @@
   = yield
   %label{label_attrs}
     = builder.input_label(attribute_name)
+    - if required
+      = builder.render_partial AwesomeForm.default_required_template, locals: locals
 
   - if has_error
     = builder.render_partial 'inputs/errors', locals: locals
