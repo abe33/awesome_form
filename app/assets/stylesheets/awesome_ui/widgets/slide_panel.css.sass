@@ -1,0 +1,93 @@
+.slide-control
+  padding: $padding_5
+  border-radius: $radius_1
+  cursor: pointer
+  margin-top: $padding_3
+
+  +box
+  +box-sizing
+  +paper-box
+  +relative
+
+  &:active
+    +animation(touched 0.2s)
+
+
+  i
+    color: $grey
+    right: $padding_5
+    margin-top: -1px
+    +absolute($padding_5)
+
+.slide-panel
+  bottom: 0
+  right: -25px
+  margin-right: -25px
+  // padding: $padding_5 $padding_6
+  transform: translate3d(100%, 0, 0) rotateY(20deg)
+  -webkit-transform: translate3d(100%, 0, 0) rotateY(20deg)
+  perspective: 200px
+  background: $grey_light
+  perspective-origin: 50% 50%
+  z-index: 10
+  box-shadow: -2px 0 4px $grey_dark
+  transition: all 0.4s cubic-bezier(0.365, -0.355, 0.910, 0.495)
+  overflow: auto
+  +fixed(0,0)
+
+  &.open
+    transition: all 0.3s cubic-bezier(0.780, 0.145, 0.765, 0.245)
+    transform: translate3d(0, 0, 0) rotateY(0)
+    -webkit-transform: translate3d(0, 0, 0) rotateY(0)
+
+  .title
+    padding: $padding_5 $padding_6
+    background: $grey
+    height: 36px
+    z-index: 11
+
+    @extend %text-default
+    @extend %title-text
+
+    +title-box
+    +relative
+
+    transition: box-shadow 0.1s
+
+    &:active
+      .close
+        +animation(touched 0.2s)
+
+
+    &.detached
+      box-shadow: 0 1px 3px $grey_dark
+
+    .close
+      cursor: pointer
+      background: $grey_light
+      border: 1px solid $grey_dark
+      right: 54px
+      border-radius: $radius_3
+
+      @extend %text-default
+
+      +box(28px, 28px)
+      +box-sizing
+      +absolute(4px)
+
+      i
+        padding: 4px 0
+        font-size: 16px
+        text-align: center
+        display: block
+
+  .content
+    padding-right: 50px
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+
+    right: 0
+    bottom: 0
+    +absolute(36px, 0)
+
+

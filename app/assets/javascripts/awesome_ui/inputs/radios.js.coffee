@@ -8,10 +8,10 @@ class RadioGroup
   @RIGHT_ENTER_EASING: widgets.key_spline(0.385, 0.005, 0.6, 1.275)
   @RIGHT_EXIT_EASING: widgets.key_spline(0.55, -1, 0.65, 1.0)
 
-  @TOP_OFFSET: 11
+  @TOP_OFFSET: 10
   @TOP_SLIDE_EASING: widgets.key_spline(0.660, -0.2, 0.590, 1.045)
 
-  @BOTTOM_OFFSET: 4
+  @BOTTOM_OFFSET: 5
   @BOTTOM_SLIDE_EASING: widgets.key_spline(0.890, -0.060, 0.660, 1.610)
 
   @EXIT_DURATION = 200
@@ -19,8 +19,6 @@ class RadioGroup
   @SLIDE_DURATION = 300
 
   constructor: (@element, @options) ->
-
-  init: ->
     @markers = []
     @tracks = new widgets.Hash
 
@@ -36,11 +34,8 @@ class RadioGroup
       @markers.push marker
       @tracks.set track, @columns[i]
 
-      @columns[i].appendChild track
-
+    @register_events()
     @init_marker()
-
-    this
 
   update_rows: ->
     @rows = @element.querySelectorAll '.row'
@@ -81,9 +76,16 @@ class RadioGroup
         input = column.querySelector('input')
         inputs_coordinates.set input, {x, y}
 
-        @register_events input
+  register_events: ->
+    @element.addEventListener 'child:added', =>
+      @update_height()
+      @with_selected (selected, coordinates, marker) ->
+        @place_marker marker, coordinates.y
 
-  register_events: (input) ->
+    Array::forEach.call @element.querySelectorAll('input'), (input) =>
+      @register_input_events input
+
+  register_input_events: (input) ->
     input.addEventListener 'change', =>
       @with_selected (selected, coordinates, marker, old_marker) ->
         if @current_coordinates?
@@ -229,5 +231,5 @@ class RadioGroup
     @track_height - (@marker_top(element) + element.offsetHeight) + RadioGroup.BOTTOM_OFFSET
 
 widgets.define 'radios', (element, options) ->
-  new RadioGroup(element, options).init()
+  new RadioGroup(element, options)
 

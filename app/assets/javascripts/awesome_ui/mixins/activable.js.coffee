@@ -1,5 +1,5 @@
 class mixins.Activable
-  active: true
+  active: false
 
   activate: ->
     @active = true

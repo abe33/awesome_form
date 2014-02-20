@@ -5,34 +5,33 @@
 
   .input + label
     text-align: left
-    width: auto
     cursor: pointer
-    position: relative
+    padding: $padding_4
+    z-index: 1
     padding-right: 0
     padding-left: 48px
-    z-index: 1
+    font-size: 16px
+    min-height: 32px
     width: 100%
 
-    &:before
-      content: ''
-      width: 28px
-      height: 28px
-      display: block
-      position: absolute
+    +relative
+
+    +before
       border-radius: 20px
       border: 1px solid $grey
-      top: 3px
-      left: 2px
       transition: border-width 0.4s
       box-shadow: inset 0 5px 10px -5px $grey_light
+
+      +box(28px)
       +box-sizing
+      +absolute(3px, 2px)
 
     &:hover:before
       border: 14px solid $grey
       transition: border-width 0.2s
 
   .radios-track
-    @extend %inset-box
+    +inset-box
     width: 32px
     position: absolute
     border-radius: 16px
@@ -78,7 +77,6 @@
             right: 2px
             left: initial
 
-
       label
         width: 100%
 
@@ -86,25 +84,50 @@
     .radios-track
       box-shadow: inset 0 1px 3px -1px $red
 
-@media only screen and (max-width: $break-md-1)
++upto-md
   .radios
     .input + label
+
+      padding: 12px 12px 12px 44px
+      border-radius: 3px
+
+      +box
+      +paper-box
+
+      &:active
+        +animation(touched 0.2s)
+
+
       +before
         background: $grey_lighter
+        +absolute(4px, 8px)
 
       +after
-        display: block
-        width: 28px
-        height: 28px
         border-radius: 16px
         border: 0px solid $grey
         transition: border-width 0.4s, border-color 0.3s
-        +absolute(3px, 2px)
+        +box(28px)
         +box-sizing
+        +absolute(4px, 8px)
 
     .input:checked + label
       +after
         border-width: 14px
         border-color: $red_light
         transition: border-width 0.2s, border-color 0.1s
+
+    &.binary
+      .column:last-child
+        padding-right: 0
+
+      .column:first-child
+        padding-left: 0
+        label
+          padding-right: 44px
+
+          +before-and-after
+            right: 8px
+
+  .slide-panel input[type=radio] + label
+    margin: $padding_3
 

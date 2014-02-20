@@ -26,7 +26,7 @@ module AwesomeForm
           end
 
           def #{name}(key, options={}, &block)
-            opts = send("options_for_#{name}", key, options)
+            opts = send("options_for_#{name}", key, options).merge(block: block)
 
             render_options = {
               partial: send("partial_for_#{name}", opts),

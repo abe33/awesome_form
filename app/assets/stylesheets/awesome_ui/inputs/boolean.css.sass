@@ -1,64 +1,79 @@
-.boolean .check
-  @extend .offset-md-3
 
 .has-errors
   [type=checkbox] + .check
     &:before
       box-shadow: inset 0 1px $inset_bevel_size -1px $red
 
-.input[type=checkbox]
-  display: none
+.boolean
+  input
+    display: none
 
-  & + .check
-    width: 48px
-    height: 32px
+    &:checked + label .check
+      &:after
+        left: 18px
+        right: 0px
+        transition: left 0.2s ease-in, right 0.2s ease-out
+
+      &:before
+        background: lighten($red, 30%)
+
+  label
+    text-align: left
+    padding: 14px 64px 14px 12px
+    border-radius: 3px
+    font-size: 16px
     position: relative
-    display: inline-block
-    vertical-align: top
+    cursor: pointer
+
+    @extend .column-md-8
+    @extend .offset-md-4
+
+    +box
+    +paper-box
+
+.check
+  width: 48px
+  height: 32px
+  display: inline-block
+  vertical-align: top
+  border-radius: 18px
+  overflow: hidden
+  right: $padding_3
+  pointer-events: none
+  +absolute(4px)
+
+  &:before, &:after
+    +box-sizing(border-box)
+    content: ''
+    display: block
+    height: 32px
+    position: absolute
+    left: 0
+
+  &:before
+    top: 0
     border-radius: 18px
-    overflow: hidden
+    width: 48px
+    transition: all 0.2s
+    +inset-box
 
-    &:before, &:after
-      +box-sizing(border-box)
-      content: ''
-      display: block
-      height: 32px
-      position: absolute
-      left: 0
+  &:after
+    top: 0
+    background: $grey_lighter
+    border: 1px solid $grey
+    border-radius: 50%
+    height: 32px
+    left: 0px
+    right: 18px
+    transition: right 0.2s ease-in, left 0.2s ease-out
+    box-shadow: 0 32px 10px $grey_very_dark, 0 $inset_bevel_size 0 $grey, 0 $inset_bevel_size 3px $grey_very_dark
 
-    &:before
-      top: 0
-      border-radius: 18px
-      width: 48px
-      transition: all 0.2s
-      @extend %inset-box
+    +force-gpu
 
-    &:after
-      top: 0
-      background: $grey_lighter
-      border: 1px solid $grey
-      border-radius: 50%
-      height: 32px
-      left: 0px
-      right: 18px
-      transition: right 0.2s ease-in, left 0.2s ease-out
-      box-shadow: 0 32px 10px $grey_very_dark, 0 $inset_bevel_size 0 $grey, 0 $inset_bevel_size 3px $grey_very_dark
++upto-md
+  .check
+    margin-right: 0
 
-    & + label
-      padding-left: 64px
-      margin-left: -54px
-      padding-right: 0px
-      z-index: 1
-      position: relative
-      text-align: left
-      width: auto
-      cursor: pointer
+  label:active
+    +animation(touched 0.2s)
 
-  &:checked + .check
-    &:after
-      left: 18px
-      right: 0px
-      transition: left 0.2s ease-in, right 0.2s ease-out
-
-    &:before
-      background: lighten($red, 30%)

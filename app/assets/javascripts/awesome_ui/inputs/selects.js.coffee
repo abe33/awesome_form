@@ -37,7 +37,7 @@ class widgets.SingleSelect
     if selected?
       selected.textContent
     else
-      widgets.content_tag_html 'span', 'Placeholder', class: 'placeholder'
+      widgets.content_tag_html 'span', 'placeholder', class: 'placeholder'
 
 
 widgets.define 'single_select', (element, options) ->

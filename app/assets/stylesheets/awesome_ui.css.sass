@@ -1,32 +1,28 @@
-@import awesome_ui/mixins
 @import awesome_ui/variables
+@import awesome_ui/mixins/base
+@import awesome_ui/mixins/text
+@import awesome_ui/mixins/boxes
+@import awesome_ui/mixins/position
+@import awesome_ui/mixins/animations
+@import awesome_ui/mixins/inputs
+@import awesome_ui/mixins/responsive
 @import awesome_ui/grid
 @import awesome_ui/classes
+@import awesome_ui/errors
+@import awesome_ui/animations
+@import awesome_ui/wrappers/inputs
+@import awesome_ui/wrappers/field
+@import awesome_ui/wrappers/actions
 @import awesome_ui/actions/default
 @import awesome_ui/inputs/default
 @import awesome_ui/inputs/boolean
 @import awesome_ui/inputs/radios
+@import awesome_ui/inputs/check_boxes
 @import awesome_ui/inputs/selects
 @import awesome_ui/inputs/ranges
-@import awesome_ui/wrappers/inputs
-@import awesome_ui/wrappers/field
-@import awesome_ui/wrappers/actions
+@import awesome_ui/inputs/file
+@import awesome_ui/widgets/slide_panel
+@import awesome_ui/widgets/sticky
 
-.field label,
-.inputs legend,
-.actions legend,
-.action,
-.input,
-.inline-error
+form, input, textarea, select, label, button
   @extend %text-default
-
-.inputs
-  .row
-    // width: 350px
-
-  .input
-    width: 100%
-    min-height: 32px
-    margin: 0
-
-

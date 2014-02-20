@@ -1,0 +1,32 @@
+:ruby
+  wrapper_html ||= {}
+  label_html ||= {}
+
+  has_error = object.errors.messages[attribute_name].present?
+
+  wrapper_error_class = has_error ? AwesomeForm.default_input_wrapper_error_class : nil
+
+  wrapper_attrs = builder.attributes_for(:div, wrapper_html, class: [
+    AwesomeForm.default_input_wrapper_class,
+    wrapper_error_class,
+    model_name,
+    attribute_name,
+    type
+  ])
+
+  label_attrs = builder.attributes_for :label, label_html, for: builder.input_id(attribute_name), class: AwesomeForm.default_label_class
+
+%div{wrapper_attrs}
+  = yield
+  %label{label_attrs}
+    = builder.input_label(attribute_name)
+    - if required
+      = builder.render_partial AwesomeForm.default_required_template, locals: locals
+    .check
+
+  - if has_error
+    = builder.render_partial 'inputs/errors', locals: locals
+
+  - if defined?(hint) && hint.present?
+    = builder.render_partial 'wrappers/hints', locals: locals
+

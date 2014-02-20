@@ -10,30 +10,38 @@
     end
   end
 
+  default_input_html = {
+    placeholder: 'placeholder',
+  }
+  hint =  params[:with_hints].present? ? 'This is a hint.' : nil
+
 - content_for :styles do
   = stylesheet_link_tag AwesomeForm.theme, media: "all"
 
 - content_for :scripts do
   = javascript_include_tag AwesomeForm.theme
 
-= link_to 'with errors', styles_path(with_errors: 1)
-= link_to 'without errors', styles_path
-
 = awesome_form_for m, url: '#', method: :get do |form|
 
   = form.inputs legend: 'Inputs', inputs_html: { class: 'red' } do
-    = form.input :text, as: :text
-    = form.input :string, as: :string, input_html: { value: 'bar' }
-    = form.input :number, as: :number, input_html: { min: 1, max: 10, step: 1, value: 5 }
-    = form.input :range, as: :range, input_html: { min: 1, max: 10, step: 1, value: 5}
-    = form.input :range_float, as: :range, input_html: { min: 1, max: 10, step: 0.1, value: 5}
-    = form.input :datetime, as: :datetime, input_html: { min: 1.day.ago, max: 1.day.from_now, value: Time.now }
-    = form.input :file, as: :file
-    = form.input :select, as: :select, collection: %w(a b c d e f g h i j k l)
-    = form.input :select_multiple, as: :select, collection: %w(a b c d e f g h i j k l), multiple: true
-    = form.input :boolean, as: :boolean, input_html: { value: 1 }
-    = form.input :check_boxes, as: :check_boxes, collection: %w(a b c d e f g h i j k l), columns: 3
-    = form.input :radios, as: :radios, collection: %w(a b c d e f g h i j k l), columns: 3
-    = form.input :binary_radios, as: :radios, collection: %w(a b), columns: 2, wrapper_html: { class: 'binary' }
+    = form.input :text, as: :text, required: params[:with_required], hint: hint, input_html: default_input_html
+    = form.input :string, as: :string, required: params[:with_required], hint: hint, input_html: { value: 'bar' }.merge(default_input_html)
+    = form.input :number, as: :number, required: params[:with_required], hint: hint, input_html: { min: 1, max: 10, step: 1, value: 5 }.merge(default_input_html)
+    = form.input :range, as: :range, required: params[:with_required], hint: hint, input_html: { min: 1, max: 10, step: 1, value: 5}.merge(default_input_html)
+    = form.input :range_float, as: :range, required: params[:with_required], hint: hint, input_html: { min: 1, max: 10, step: 0.1, value: 5}.merge(default_input_html)
+    = form.input :datetime, as: :datetime, required: params[:with_required], hint: hint, input_html: { min: 1.day.ago, max: 1.day.from_now, value: Time.now }.merge(default_input_html)
+    = form.input :file, as: :file, required: params[:with_required], hint: hint, input_html: default_input_html
+    = form.input :select, as: :select, required: params[:with_required], hint: hint, collection: %w(a b c d e f g h i j k l)
+    = form.input :select_multiple, as: :select, required: params[:with_required], hint: hint, collection: %w(a b c d e f g h i j k l), multiple: true
+    = form.input :boolean, as: :boolean, required: params[:with_required], hint: hint, input_html: { value: 1 }
+    = form.input :check_boxes, as: :check_boxes, required: params[:with_required], hint: hint, collection: %w(a b c d e f g h i j k l), columns: 3
+    = form.input :radios, as: :radios, required: params[:with_required], hint: hint, collection: %w(a b c d e f g h i j k l), columns: 3
+    = form.input :binary_radios, as: :radios, required: params[:with_required], hint: hint, collection: %w(a b), columns: 2, wrapper_html: { class: 'binary' }
 
   = form.actions :reset, :cancel, :submit
+
+= link_to 'base', styles_path
+= link_to 'with required', styles_path(with_required: 1)
+= link_to 'with hints', styles_path(with_hints: 1)
+= link_to 'with errors', styles_path(with_errors: 1)
+= link_to 'with hints and errors', styles_path(with_hints: 1, with_errors: 1)

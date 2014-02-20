@@ -41,6 +41,17 @@ widgets.content_tag = (name, content='', attrs={}) ->
     String(content)
   node
 
+widgets.icon = (name, options={}) ->
+  if options['class']
+    options['class'] += ' ' + widgets.icon_class(name)
+  else
+    options['class'] = widgets.icon_class(name)
+
+  widgets.content_tag('i', '', options)
+
+widgets.icon_class = (name) -> "fa fa-#{name}"
+
+
 widgets.tag_html = (name, attrs) -> widgets.tag(name, attrs).outerHTML
 widgets.content_tag_html = (name, content, attrs) -> widgets.content_tag(name,content, attrs).outerHTML
-
+widgets.icon_html = (name, options) -> widgets.icon(name, options).outerHTML

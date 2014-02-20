@@ -1,0 +1,23 @@
+.check_boxes
+  .row
+    margin: 0 -4px
+
+  .boolean
+    padding: 0 4px
+
+    label
+      margin: $padding_2 0
+
+  +upto-md
+    & .row
+      margin: 0
+
+    & .boolean
+      margin-top: $padding_3
+
+      & + .boolean
+        margin-top: $padding_3
+
+    & .row + .row
+      margin-top: $padding_3
+

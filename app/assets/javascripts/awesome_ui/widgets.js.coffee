@@ -96,10 +96,11 @@ widgets = (name, selector, options={}, block) ->
       res = __widgets__[name] element, Object.create(options), elements
       element.className += " #{handled_class}"
       instances.set element, res
-      block?.call element, element, res
 
       # The widgets activation state are resolved at creation
       media_handler(element, res) if media_condition?
+
+      block?.call element, element, res
 
   # For each event specified, the handler is registered as listener.
   # A special case is the `init` event that simply mean to trigger the
@@ -149,3 +150,5 @@ widgets.deactivate = (name) ->
   __instances__[name].each (value) -> value?.deactivate?()
 
 window.widgets = widgets
+window.widget = widgets
+window.$w = widgets

@@ -1,0 +1,69 @@
+
+=for-webkit()
+  @media screen and (-webkit-min-device-pixel-ratio:0)
+    @content
+
+=for-gecko()
+  @-moz-document url-prefix()
+    @content
+
+=for-retina()
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2)
+    @content
+
+=for-xs()
+  @media (max-width: $break-xs)
+    @content
+
+=for-sm()
+  @media (min-width: $break-xs-1) and (max-width: $break-sm)
+    @content
+
+=for-md()
+  @media (min-width: $break-sm-1) and (max-width: $break-lg)
+    @content
+
+=for-lg()
+  @media (min-width: $break-lg-1) and (max-width: $break-xl)
+    @content
+
+=for-xl()
+  @media (min-width: $break-xl-1) and (max-width: $break-xxl)
+    @content
+
+=for-xxl()
+  @media only print and (min-width: $break-xxl-1)
+    @content
+
+=upto-sm()
+  @media (max-width: $break-sm)
+    @content
+
+=upto-md()
+  @media (max-width: $break-md)
+    @content
+
+=upto-lg()
+  @media (max-width: $break-lg)
+    @content
+
+=upto-xl()
+  @media (max-width: $break-xl)
+    @content
+
+=downfrom-sm()
+  @media (min-width: $break-sm-1)
+    @content
+
+=downfrom-md()
+  @media (min-width: $break-md-1)
+    @content
+
+=downfrom-lg()
+  @media (min-width: $break-lg-1)
+    @content
+
+=downfrom-xl()
+  @media (min-width: $break-xl-1)
+    @content
+

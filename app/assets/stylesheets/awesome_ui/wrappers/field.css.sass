@@ -1,58 +1,36 @@
 
 .field
-  // padding: 10px 20px
-  padding: 10px 0px
+  padding: $padding_4 $padding_6
   border-bottom: 1px solid $grey
   border-top: 1px solid $grey_lighter
   @extend .row
+  +relative
 
   *
     +box-sizing(border-box)
 
-  &:last-child
-    border-bottom-left-radius: 6px
-    border-bottom-right-radius: 6px
-
-  label
-    // width: 200px
-    text-align: right
-
-  .inline-error
-    display: inline-block
-
   label, .controls
     @extend .column
 
-  label
-    @extend .column-md-3
-
-  .controls
-    @extend .column-md-5
-
-  label, .inline-error
-    padding: 10px
-
-  .inline-error
-    color: $grey_light
-    background: $red
     vertical-align: top
-    border-radius: 3px
-    position: relative
-    margin-left: 16px
-    +reset-char-collapse
 
-    &:before
-      content: ''
-      display: block
-      width: 0px
-      height: 0px
-      position: absolute
-      top: 50%
-      right: 100%
-      border: 8px solid transparent
-      border-right-color: $red
-      margin-top: -8px
+  label
+    @extend .column-md-4
 
   .controls
-    .row + .row
-      margin-top: 8px
+    @extend .column-md-8
+
+  +upto-md
+    &
+      label
+        font-size: 12px
+
+      .controls
+        margin-top: $padding_3
+
+  +downfrom-md
+    &
+      label
+        padding: 10px
+        text-align: right
+

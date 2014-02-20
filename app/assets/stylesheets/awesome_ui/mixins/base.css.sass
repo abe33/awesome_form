@@ -1,0 +1,40 @@
+=vendor-prefix($property, $value)
+  -webkit-#{$property}: #{$value}
+  -moz-#{$property}: #{$value}
+  -ms-#{$property}: #{$value}
+  -o-#{$property}: #{$value}
+  #{$property}: #{$value}
+
+=opacity($trans)
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$trans * 100})"
+  filter: alpha(opacity=($trans * 100))
+
+  +vendor-prefix(opacity, $trans)
+
+=before($content: '')
+  &:before
+    content: $content
+    @content
+
+=after($content: '')
+  &:after
+    content: $content
+    @content
+
+=before-and-after($content: '')
+  +before($content)
+    @content
+
+  +after($content)
+    @content
+
+=clearfix($height: 0)
+  &:after
+    content: "."
+    display: block
+    height: $height
+    clear: both
+    visibility: hidden
+
+=force-gpu
+  transform: translate3d(0,0,0)

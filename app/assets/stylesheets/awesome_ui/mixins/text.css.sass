@@ -1,0 +1,17 @@
+
+=rem($property, $value)
+  #{$property}: $value * $base-font-size
+  #{$property}: #{$value}rem
+
+=text-ellipsis()
+  overflow: hidden
+  white-space: nowrap
+  +vendor-prefix(text-overflow, ellipsis)
+
+=char-collapse()
+  letter-spacing: -0.31em
+  white-space: nowrap
+
+=reset-char-collapse()
+  letter-spacing: normal
+  white-space: normal

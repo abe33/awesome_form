@@ -2,16 +2,13 @@
   display: none
 
 .select-value
-  height: 32px
-  // width: 350px
-  border-radius: 6px
-  padding: 10px 8px
+  border-radius: $padding_2
+  padding: $padding_5 $padding_4
   cursor: pointer
-  @extend %outset-box
+
   @extend %text-default
 
-  .placeholder
-    color: $grey_dark
+  +paper-box
 
 .select-drop
   display: none

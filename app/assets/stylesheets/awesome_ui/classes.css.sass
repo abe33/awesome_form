@@ -5,13 +5,18 @@
   line-height: 0.8em
   color: $grey_extra_dark
 
-%inset-box
-  border: none
-  border-top: $inset_bevel_size solid $input_border
-  background: $input_color
-  box-shadow: inset 0 1px $inset_bevel_size -1px $grey_very_dark
+%small-text
+  font-size: 12px
 
-%outset-box
-  border: none
-  background-image: linear-gradient(to bottom, $grey_lighter 50%, lighten($grey_light, 2%) 100%)
-  box-shadow: 0 1px $inset_bevel_size -1px $grey_dark
+%title-text
+  @extend %small-text
+
+  font-weight: normal
+  text-transform: uppercase
+
+%padded-column-row
+  margin-left: -$padding_2
+  margin-right: -$padding_2
+
+%padded-column
+  padding: 0 $padding_2

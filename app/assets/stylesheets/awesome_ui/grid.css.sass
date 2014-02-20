@@ -8,10 +8,13 @@ $size_breakpoints: $break-sm $break-md $break-lg $break-xl $break-xxl
   > *
     +reset-char-collapse
 
-.column
+=column
   display: block
   position: relative
   letter-spacing: normal
+
+.column
+  +column
 
 @for $i from 1 to 6
   $size_name: nth($size_names, $i)
@@ -41,3 +44,4 @@ $size_breakpoints: $break-sm $break-md $break-lg $break-xl $break-xxl
 
       .offset-#{$size_name}-#{$j}
         margin-left: $width
+

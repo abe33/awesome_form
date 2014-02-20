@@ -1,0 +1,19 @@
+
+=animation($args)
+  +vendor-prefix(animation, $args)
+
+=keyframes($name)
+  @keyframes #{$name}
+    @content
+
+  @-webkit-keyframes #{$name}
+    @content
+
+  @-moz-keyframes #{$name}
+    @content
+
+  @-o-keyframes #{$name}
+    @content
+
+  @-ms-keyframes #{$name}
+    @content

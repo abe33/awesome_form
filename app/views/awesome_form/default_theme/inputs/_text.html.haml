@@ -5,4 +5,5 @@
     class: AwesomeForm.default_input_class,
   }
 
-%textarea{attrs}= object.try(attribute_name)
+%textarea{attrs}
+  = block.present? ? block.call() : defined?(value) ? value : object.try(attribute_name)

@@ -56,27 +56,42 @@ $grey_extra_dark: darken($base, 60%)
 $grey_extra_darker: desaturate(darken($base, 70%), 20%)
 $grey_extra_darker_2: desaturate(darken($red, 20%), 50%)
 
+$grey_gradient_lighter: linear-gradient(to bottom, $grey_lighter 50%, lighten($grey_light, 2%) 100%)
+
 $break-sm: 480px
 $break-md: 768px
 $break-lg: 1020px
 $break-xl: 1220px
-$break-xxl: 1220px
+$break-xxl: 1600px
 
-$break-sm-1: $break-sm - 1
-$break-md-1: $break-md - 1
-$break-lg-1: $break-lg - 1
-$break-xl-1: $break-xl - 1
-$break-xxl-1: $break-xxl - 1
+$break-sm-1: $break-sm + 1
+$break-md-1: $break-md + 1
+$break-lg-1: $break-lg + 1
+$break-xl-1: $break-xl + 1
+$break-xxl-1: $break-xxl + 1
+
+$padding_1: 2px
+$padding_2: 3px
+$padding_3: 6px
+$padding_4: 8px
+$padding_5: 12px
+$padding_6: 20px
+
+$radius_1: 3px
+$radius_2: 4px
+$radius_3: 6px
+$radius_4: 10px
 
 $inset_bevel_size: 2px
+$outset_bevel_size: 2px
 
-$button_radius: 6px
-$button_padding: 6px 8px
+$button_radius: $radius_3
+$button_padding: $padding_4 $padding_5
 $button_color: $grey_light
 $button_border: $grey
 
-$input_radius: 6px
-$input_padding: (5px + $inset_bevel_size) 12px 6px
+$input_radius: $radius_3
+$input_padding: ($padding_3 - 1px + $inset_bevel_size) $padding_5 $padding_3
 $input_color: $grey_lighter
 $input_border: $grey
 
