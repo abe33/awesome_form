@@ -18,11 +18,12 @@
 
 %div{wrapper_attrs}
   %label{label_attrs}
+    = builder.render_partial AwesomeForm.default_required_template, locals: locals
     = builder.input_label(attribute_name)
   .controls= yield
   - if has_error
-    = builder.render_partial 'inputs/errors', locals: locals
+    = builder.render_partial AwesomeForm.default_errors_template, locals: locals
 
   - if defined?(hint) && hint.present?
-    = builder.render_partial 'wrappers/hints', locals: locals
+    = builder.render_partial AwesomeForm.default_hints_template, locals: locals
 

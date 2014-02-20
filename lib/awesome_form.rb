@@ -42,6 +42,15 @@ module AwesomeForm
   mattr_accessor :default_input_wrapper_error_class
   @@default_input_wrapper_error_class = 'has-errors'
 
+  mattr_accessor :default_required_template
+  @@default_required_template = 'wrappers/required'
+
+  mattr_accessor :default_hints_template
+  @@default_hints_template = 'wrappers/hints'
+
+  mattr_accessor :default_errors_template
+  @@default_errors_template = 'inputs/errors'
+
   mattr_accessor :default_row_class
   @@default_row_class = 'row'
 

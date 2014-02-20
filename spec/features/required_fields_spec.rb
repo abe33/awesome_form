@@ -9,5 +9,7 @@ feature 'required fields' do
       input[name="universe[light_years]"][required]
       input[name="universe[created_at]"][required]
     ')
+
+    expect(page.all('label')[0]).to have_content '*'
   end
 end

@@ -18,6 +18,7 @@ module AwesomeForm
 
         input_options = {
           attribute_name: attribute,
+          required: has_validator_for_attribute?(attribute) || options[:required],
         }
         .merge(default_locals)
         .merge(type_options)
@@ -28,7 +29,7 @@ module AwesomeForm
 
         input_options[:input_html][:placeholder] ||= input_placeholder(attribute)
         input_options[:input_html][:hints] ||= input_hint(attribute)
-        input_options[:input_html][:required] ||= has_validator_for_attribute?(attribute) || options[:required]
+        input_options[:input_html][:required] ||= input_options[:required]
 
         input_options
       end
