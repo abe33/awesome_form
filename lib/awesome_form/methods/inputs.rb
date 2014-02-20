@@ -28,6 +28,7 @@ module AwesomeForm
 
         input_options[:input_html][:placeholder] ||= input_placeholder(attribute)
         input_options[:input_html][:hints] ||= input_hint(attribute)
+        input_options[:input_html][:required] ||= has_validator_for_attribute?(attribute) || options[:required]
 
         input_options
       end

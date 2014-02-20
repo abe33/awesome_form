@@ -43,15 +43,19 @@ module AwesomeForm
         end
       end
 
+      def has_validator_for_attribute?(attribute)
+        object.class.validators_on(attribute).any?
+      end
+
       def column_for_attribute(attribute)
-        if @object.respond_to?(:column_for_attribute)
-          @object.column_for_attribute(attribute)
+        if object.respond_to?(:column_for_attribute)
+          object.column_for_attribute(attribute)
         end
       end
 
       def association_for_attribute(attribute)
-        if @object.class.respond_to?(:reflect_on_association)
-          @object.class.reflect_on_association(attribute)
+        if object.class.respond_to?(:reflect_on_association)
+          object.class.reflect_on_association(attribute)
         end
       end
 
